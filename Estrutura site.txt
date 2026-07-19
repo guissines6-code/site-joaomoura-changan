@@ -1,0 +1,47 @@
+ESTRUTURA DA LANDING PAGE - JOÃO MOURA (CAOA CHANGAN - BARRA DA TIJUCA/RJ)
+
+1. HERO
+   - Foto do João Moura
+   - Nome + cargo ("Vendedor Caoa Changan Barra da Tijuca")
+   - Frase de impacto curta
+   - Botão de WhatsApp em destaque
+
+2. SOBRE O VENDEDOR
+   - Bio curta: tempo de experiência, número de carros entregues
+   - Diferencial de atendimento
+
+3. MODELOS DISPONÍVEIS
+   - Grid/carrossel dos carros Changan
+   - Foto, nome do modelo, faixa de preço "a partir de"
+   - Botão "Consultar no WhatsApp" em cada card
+
+4. DIFERENCIAIS / POR QUE COMPRAR COM ELE
+   - Financiamento e consorcio
+   - Avaliação de usados na troca
+   - Entrega rápida
+   - Atendimento personalizado
+
+5. DEPOIMENTOS COM FOTOS DE ENTREGA
+   - Foto do cliente recebendo o carro + nome + breve frase
+   - Formato carrossel ou grid
+
+6. FAQ
+   - Financiamento
+   - Test-drive
+   - Troca de veículo
+   - Garantia
+
+7. LOCALIZAÇÃO
+   - Endereço da concessionária (Barra da Tijuca)
+   - Mapa incorporado
+   - Horário de atendimento
+
+8. CTA FINAL + RODAPÉ
+   - Reforço do botão de WhatsApp
+   - Redes sociais (@joaomoura.caoachangan)
+   - Contato
+
+9. BOTÃO FLUTUANTE DE WHATSAPP
+   - Elemento fixo, presente em todas as seções (não é uma seção própria)
+
+ORDEM DO FUNIL: confiança -> produto -> prova social -> remoção de dúvida -> contato
