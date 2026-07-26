@@ -271,7 +271,7 @@
 
         <!-- Mídia: bloco grande e visível no mobile (vídeo vertical, impacto máximo); vira fundo full-bleed no desktop -->
         <div class="relative h-[78vh] sm:h-[82vh] md:absolute md:inset-0 md:h-full">
-          <video id="heroVideo" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]" autoplay muted loop playsinline preload="metadata" poster="assets/img/cs75-video-poster.jpg">
+          <video id="heroVideo" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]" autoplay muted loop playsinline preload="metadata" poster="assets/img/cs75-video-poster.jpg" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny">
             <source src="assets/video/video-detalhe-luz.mp4" type="video/mp4">
           </video>
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-background md:to-background"></div>
@@ -372,7 +372,7 @@
           <iconify-icon icon="mdi:car-outline" width="48" height="48" class="text-white/25"></iconify-icon>
           <span class="text-sm font-medium text-white/35">Vídeo do Uni-T em breve</span>
         </div>
-        <video id="unitVideo" class="absolute inset-0 z-[2] w-full h-full object-cover md:hidden" muted loop playsinline preload="metadata" poster="assets/img/unit-montagem-poster.jpg">
+        <video id="unitVideo" class="absolute inset-0 z-[2] w-full h-full object-cover md:hidden" muted loop playsinline preload="metadata" poster="assets/img/unit-montagem-poster.jpg" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny">
           <source src="assets/video/video-unit-montagem.mp4" type="video/mp4">
         </video>
         <img src="assets/img/Gemini_Generated_Image_lyek8klyek8klyek.png" alt="CAOA Changan Uni-T" class="hidden md:block absolute inset-0 z-[2] w-full h-full object-cover">
@@ -614,10 +614,10 @@
       </div>
 
       <div class="relative aspect-[4/5] bg-black overflow-hidden" id="proofMedia">
-        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" poster="assets/img/video-entrega-carro-poster.jpg" style="opacity: 1;">
+        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny" poster="assets/img/video-entrega-carro-poster.jpg" style="opacity: 1;">
           <source src="assets/video/video-entrega-carro.mp4" type="video/mp4">
         </video>
-        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" poster="assets/img/video-entrega-poster.jpg" style="opacity: 0;">
+        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny" poster="assets/img/video-entrega-poster.jpg" style="opacity: 0;">
           <source src="assets/video/video-entrega.mp4" type="video/mp4">
         </video>
 
