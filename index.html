@@ -71,15 +71,21 @@
   }
   @media (min-width: 720px) { .header-pill { padding: 12px 28px; } }
 
-  /* Mantém o enquadramento do vídeo estável antes de o Tailwind carregar. */
-  #heroVideo { object-position: 50% 10%; }
+  /* Mantém o enquadramento do vídeo estável antes de o Tailwind carregar.
+     O vídeo fica invisível (opacity:0) até o evento "playing" real disparar —
+     não até "loadeddata" — porque um vídeo carregado mas ainda pausado (autoplay
+     bloqueado por Economia de Dados/Modo de Baixa Energia) é exatamente o estado em
+     que o navegador desenha o ícone de play nativo por cima. Escondendo o <video>
+     nesse meio-tempo e mostrando só o poster (imagem estática, sem ícone) por trás,
+     o usuário nunca vê esse botão — em qualquer largura de tela, não só desktop. */
+  #heroVideo {
+    object-position: 50% 10%;
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+  }
+  #heroVideo.is-ready { opacity: 1; }
   @media (min-width: 768px) {
-    #heroVideo {
-      object-position: 50% 45%;
-      opacity: 0;
-      transition: opacity 180ms ease-out;
-    }
-    #heroVideo.is-ready { opacity: 1; }
+    #heroVideo { object-position: 50% 45%; }
   }
 
   .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -273,6 +279,7 @@
 
         <!-- Mídia: bloco grande e visível no mobile (vídeo vertical, impacto máximo); vira fundo full-bleed no desktop -->
         <div class="relative h-[78vh] sm:h-[82vh] md:absolute md:inset-0 md:h-full">
+          <img src="assets/img/cs75-video-poster.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]">
           <video id="heroVideo" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]" autoplay muted loop playsinline preload="metadata" poster="assets/img/cs75-video-poster.jpg" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny">
             <source src="assets/video/video-detalhe-luz.mp4" type="video/mp4">
           </video>
@@ -1164,8 +1171,15 @@
     function revealHeroVideo() {
       requestAnimationFrame(function () { heroVideo.classList.add("is-ready"); });
     }
-    if (heroVideo.readyState >= 2) revealHeroVideo();
-    else heroVideo.addEventListener("loadeddata", revealHeroVideo, { once: true });
+    // Só revela o <video> quando ele já está tocando de fato — nunca no estado
+    // "carregado mas pausado", que é quando o navegador mostraria o ícone de play
+    // nativo. Enquanto isso, o <img> do poster (sem ícone) fica visível por trás.
+    if (!heroVideo.paused) revealHeroVideo();
+    else heroVideo.addEventListener("playing", revealHeroVideo, { once: true });
+    // Rede de segurança: se por algum motivo o vídeo nunca chegar a tocar
+    // (falha total de autoplay e nenhum gesto do usuário), revela mesmo assim
+    // depois de um tempo pra não deixar a hero presa só no poster pra sempre.
+    setTimeout(revealHeroVideo, 4000);
 
     var LIGHT_MOMENT = 0.9; // segundos: instante em que o brilho do farol começa a atingir o pico nessa área da tela
     var triggered = false;
