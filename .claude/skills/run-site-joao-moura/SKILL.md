@@ -1,15 +1,19 @@
 ---
 name: run-site-joao-moura
-description: Sobe o site (index-v2.html), navega e tira screenshots de todas as seções em mobile e desktop, testa o menu hamburguer e o accordion do FAQ, e reporta erros de console/página. Use quando pedirem para rodar, testar, abrir, screenshotar ou verificar visualmente o site do João Moura (index-v2.html) — inclui checar se uma mudança de CSS/HTML/JS quebrou algo antes de reportar como concluída.
+description: Sobe o site (index.html), navega e tira screenshots de todas as seções em mobile e desktop, testa o menu hamburguer e o accordion do FAQ, e reporta erros de console/página. Use quando pedirem para rodar, testar, abrir, screenshotar ou verificar visualmente o site do João Moura (index.html) — inclui checar se uma mudança de CSS/HTML/JS quebrou algo antes de reportar como concluída.
 ---
 
-Site estático (HTML puro + Tailwind via CDN, sem build step). É servido por um file
-server local e dirigido por `driver.mjs` (Playwright-core controlando o Chrome já
-instalado no sistema — não há `chromium-cli` nem `xvfb` neste ambiente Windows).
-Todos os caminhos abaixo são relativos à raiz do repositório (`<repo>/`).
+Site estático (HTML puro + Tailwind compilado localmente via CLI, sem CDN). É
+servido por um file server local e dirigido por `driver.mjs` (Playwright-core
+controlando o Chrome já instalado no sistema — não há `chromium-cli` nem `xvfb`
+neste ambiente Windows). Todos os caminhos abaixo são relativos à raiz do
+repositório (`<repo>/`).
 
-O arquivo alvo é sempre **`index-v2.html`** — é a versão oficial em uso (v1,
-`index.html`, é legado e não deve ser testado a menos que peçam explicitamente).
+O arquivo alvo é sempre **`index.html`** (na raiz) — é a versão oficial, em produção
+na Vercel. O antigo v1 foi arquivado como `index-v1-legado.html` e não deve ser
+testado a menos que peçam explicitamente. Se mexer em classes Tailwind, rode
+`npm run build:css` na raiz do repo antes de testar (gera `assets/css/tailwind.css`
+a partir de `assets/css/tailwind-input.css` + `tailwind.config.js`).
 
 ## Prerequisites
 
@@ -34,7 +38,7 @@ npm install
 
 ```bash
 npx serve -l 8080 . &
-timeout 15 bash -c 'until curl -sf -o /dev/null http://localhost:8080/index-v2.html; do sleep 0.5; done'
+timeout 15 bash -c 'until curl -sf -o /dev/null http://localhost:8080/index.html; do sleep 0.5; done'
 ```
 
 2. Rode o driver:
@@ -45,7 +49,7 @@ node driver.mjs
 ```
 
 Isso abre o Chrome duas vezes (mobile 390×844, depois desktop 1440×900), navega até
-`http://localhost:8080/index-v2.html`, rola até cada seção (`#destaque-unit`,
+`http://localhost:8080/index.html`, rola até cada seção (`#destaque-unit`,
 `#modelos`, `#diferenciais`, `#depoimentos`, `#faq`, `#contato`, e o footer),
 screenshota cada uma, testa o menu hamburguer no mobile e o accordion do FAQ, e ao
 final imprime qualquer erro de console/página capturado (ou "nenhum erro encontrado").
@@ -56,7 +60,7 @@ Screenshots → `.claude/skills/run-site-joao-moura/.tmp-shots/<viewport>-<seç�
 Para testar outra URL ou outra pasta de saída:
 
 ```bash
-node driver.mjs http://localhost:8080/index-v2.html /caminho/customizado
+node driver.mjs http://localhost:8080/index.html /caminho/customizado
 ```
 
 **Depois de rodar, olhe as screenshots** (Read tool) — o driver só garante que a
@@ -69,7 +73,7 @@ visualmente.
 npx serve -l 8080 .
 ```
 
-Abrir `http://localhost:8080/index-v2.html` no navegador manualmente. `Ctrl+C` para
+Abrir `http://localhost:8080/index.html` no navegador manualmente. `Ctrl+C` para
 parar o servidor.
 
 ---

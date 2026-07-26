@@ -1,10 +1,10 @@
 // Driver one-shot: lança o Chrome instalado no sistema via playwright-core,
-// navega pelo index-v2.html, tira screenshots de cada seção em mobile e
+// navega pelo index.html, tira screenshots de cada seção em mobile e
 // desktop, testa o menu hamburguer / accordion do FAQ, e reporta qualquer
 // erro de console ou de página encontrado.
 //
 // Uso: node driver.mjs [url] [shotDir]
-//   url     default: http://localhost:8080/index-v2.html
+//   url     default: http://localhost:8080/index.html
 //   shotDir default: ./.tmp-shots (relativo a este arquivo)
 
 import { chromium } from "playwright-core";
@@ -13,7 +13,7 @@ import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const URL = process.argv[2] || "http://localhost:8080/index-v2.html";
+const URL = process.argv[2] || "http://localhost:8080/index.html";
 const SHOT_DIR = process.argv[3] || path.join(__dirname, ".tmp-shots");
 fs.mkdirSync(SHOT_DIR, { recursive: true });
 
