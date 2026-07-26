@@ -1039,6 +1039,34 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ============ FALLBACK DE AUTOPLAY ============
+     Modo de Baixa Energia (iOS) e Economia de Dados (Chrome/Android) bloqueiam
+     autoplay nativo mesmo com muted+playsinline. Um play() disparado dentro de
+     um gesto real do usuário (toque/scroll/clique) nunca é bloqueado — então na
+     primeira interação forçamos o play de qualquer vídeo que devesse estar
+     rodando e ainda esteja pausado. */
+  (function () {
+    var unlocked = false;
+    var gestureEvents = ["touchstart", "scroll", "click", "keydown"];
+    function unlockAutoplayVideos() {
+      if (unlocked) return;
+      unlocked = true;
+      gestureEvents.forEach(function (evt) {
+        document.removeEventListener(evt, unlockAutoplayVideos);
+      });
+      var heroV = document.getElementById("heroVideo");
+      if (heroV && heroV.paused) heroV.play().catch(function () {});
+      var unitV = document.getElementById("unitVideo");
+      if (unitV && unitV.paused) unitV.play().catch(function () {});
+      document.querySelectorAll(".proof-slide").forEach(function (v) {
+        if (parseFloat(v.style.opacity) > 0 && v.paused) v.play().catch(function () {});
+      });
+    }
+    gestureEvents.forEach(function (evt) {
+      document.addEventListener(evt, unlockAutoplayVideos, { passive: true });
+    });
+  })();
+
   var hamburger = document.getElementById("hamburger");
   var nav = document.getElementById("nav");
   if (hamburger && nav) {
