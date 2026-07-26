@@ -3,37 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>João Moura | Consultor Changan - Barra da Tijuca</title>
-<meta name="description" content="João Moura, consultor Changan na Barra da Tijuca. Há mais de 8 anos ajudando clientes a encontrarem o Changan ideal, com atendimento consultivo e condições facilitadas. Fale no WhatsApp.">
+<title>João Moura | Consultor CAOA Changan - Barra da Tijuca</title>
+<meta name="description" content="João Moura, consultor CAOA Changan na Barra da Tijuca. Há mais de 8 anos ajudando clientes a encontrarem o CAOA Changan ideal, com atendimento consultivo e condições facilitadas. Fale no WhatsApp.">
+
+<!-- Open Graph / preview ao compartilhar (WhatsApp, Instagram, Facebook) -->
+<!-- IMPORTANTE: trocar "https://SEU-DOMINIO-AQUI" pelo domínio real assim que o site for publicado -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="João Moura | CAOA Changan">
+<meta property="og:title" content="João Moura | Consultor CAOA Changan - Barra da Tijuca">
+<meta property="og:description" content="Consultor CAOA Changan há mais de 8 anos na Barra da Tijuca. Atendimento consultivo, condições facilitadas. Fale no WhatsApp.">
+<meta property="og:image" content="https://SEU-DOMINIO-AQUI/assets/img/og-image.jpg">
+<meta property="og:url" content="https://SEU-DOMINIO-AQUI/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="João Moura | Consultor CAOA Changan - Barra da Tijuca">
+<meta name="twitter:description" content="Consultor CAOA Changan há mais de 8 anos na Barra da Tijuca. Atendimento consultivo, condições facilitadas. Fale no WhatsApp.">
+<meta name="twitter:image" content="https://SEU-DOMINIO-AQUI/assets/img/og-image.jpg">
 
 <meta name="theme-color" content="#080b14">
+<link rel="icon" type="image/svg+xml" href="assets/img/changan-icon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        background: '#080b14',
-        foreground: '#ffffff',
-        accent: '#2E8FE0',
-        card: '#10141f',
-        border: '#232838',
-        muted: '#93a0b4'
-      },
-      fontFamily: { sans: ['Figtree', 'sans-serif'] }
-    }
-  }
-}
-</script>
+<!-- Fonte carregada de forma assíncrona (não bloqueia a primeira renderização) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/tailwind.css">
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
 <style>
   html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
   body { overflow-x: hidden; max-width: 100vw; }
@@ -58,8 +60,31 @@ tailwind.config = {
     pointer-events: auto;
   }
   @media (min-width: 720px) { .header-pill { padding: 12px 28px; } }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .brand-logo-link { display: flex; align-items: center; gap: 10px; }
+
+  /* Mantém o enquadramento do vídeo estável antes de o Tailwind carregar. */
+  #heroVideo { object-position: 50% 10%; }
+  @media (min-width: 768px) {
+    #heroVideo {
+      object-position: 50% 45%;
+      opacity: 0;
+      transition: opacity 180ms ease-out;
+    }
+    #heroVideo.is-ready { opacity: 1; }
+  }
+
+  .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand-block { display: flex; align-items: center; gap: 13px; }
+  .brand-text-link {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .brand-text-link .brand-text-group { align-items: center; }
+  @media (min-width: 860px) {
+    .brand-text-link { position: static; top: auto; left: auto; transform: none; text-align: left; }
+    .brand-text-link .brand-text-group { align-items: flex-start; }
+  }
   .brand-logo { height: 32px; width: auto; filter: brightness(0) invert(1); }
   @media (min-width: 720px) { .brand-logo { height: 36px; } }
   .brand-text-group { display: flex; flex-direction: column; line-height: 1.2; }
@@ -99,6 +124,52 @@ tailwind.config = {
     .hamburger { display: none; }
   }
 
+  /* ---- Frase de destaque no Hero (sobreposta à área escura acima do carro) ---- */
+  .hero-phrase-text {
+    display: inline-block;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.4;
+    text-align: center;
+    font-size: 1.05rem;
+    /* compensa o espaço extra que o letter-spacing final deixa à direita, pra centralizar opticamente */
+    padding-left: 0.28em;
+    opacity: 0;
+  }
+  @media (min-width: 640px) { .hero-phrase-text { font-size: 1.5rem; } }
+  /* Mobile: entra sozinha, por tempo, como já era. */
+  @media (max-width: 767px) {
+    .hero-phrase-text { animation: heroPhraseIn 1s cubic-bezier(.22,1,.36,1) 0.4s both; }
+  }
+  /* Desktop: fica invisível até o JS marcar .is-lit no instante em que o farol do vídeo ilumina essa área. */
+  @media (min-width: 768px) {
+    .hero-phrase-text { font-size: 1.85rem; }
+    .hero-phrase-text.is-lit { animation: heroPhraseIn 1s cubic-bezier(.22,1,.36,1) both; }
+  }
+  @keyframes heroPhraseIn {
+    0% { opacity: 0; transform: translateY(20px); letter-spacing: 0.05em; }
+    100% { opacity: 1; transform: translateY(0); letter-spacing: 0.28em; }
+  }
+  .hero-phrase-line {
+    display: block;
+    width: 40px;
+    height: 1px;
+    margin: 14px auto 0;
+    background: rgba(46, 143, 224, 0.65);
+    opacity: 0;
+  }
+  @media (max-width: 767px) {
+    .hero-phrase-line { animation: heroLineIn 1s cubic-bezier(.22,1,.36,1) 0.4s both; }
+  }
+  @media (min-width: 768px) {
+    .hero-phrase-line.is-lit { animation: heroLineIn 1s cubic-bezier(.22,1,.36,1) both; }
+  }
+  @keyframes heroLineIn {
+    0% { opacity: 0; transform: translateY(20px) scaleX(0.3); }
+    100% { opacity: 1; transform: translateY(0) scaleX(1); }
+  }
+
   /* ---- Foto do João no hero (mesma estilização do index.html: .hero-vendor-*) ---- */
   .hero-vendor-media { position: relative; width: 75%; max-width: 320px; aspect-ratio: 3 / 4; margin: 0 auto; }
   @media (min-width: 860px) { .hero-vendor-media { width: 260px; max-width: 320px; margin: 0 auto; } }
@@ -125,6 +196,28 @@ tailwind.config = {
     border-radius: 10px;
     box-shadow: 0 24px 60px rgba(11, 42, 74, 0.16);
   }
+
+  /* ---- Depoimentos: colunas com scroll automático contínuo ---- */
+  @keyframes scrollDown {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+  [data-scroll-column] { will-change: transform; }
+  [data-scroll-column="1"] { animation: scrollDown 22s linear infinite !important; }
+  [data-scroll-column="2"] { animation: scrollDown 26s linear infinite !important; }
+  [data-scroll-column="3"] { animation: scrollDown 24s linear infinite !important; }
+  [data-scroll-column]:hover { animation-play-state: paused; }
+
+  /* ---- Destaque Uni-T: badge pulsante ---- */
+  @keyframes badgePulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 143, 224, 0.45); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 143, 224, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 143, 224, 0); }
+  }
+  .unit-badge { animation: badgePulse 2.4s ease-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .unit-badge { animation: none; }
+  }
 </style>
 </head>
 <body class="bg-background text-foreground antialiased selection:bg-accent selection:text-white font-sans" style="background-color:#080b14;color:#ffffff;font-family:'Figtree',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;">
@@ -135,58 +228,64 @@ tailwind.config = {
   <header class="header" id="header">
     <div class="header-pill">
       <div class="header-inner">
-        <a href="#inicio" class="brand-logo-link">
-          <img src="assets/img/changan-icon.png" alt="Changan" class="brand-logo">
-          <span class="brand-text-group">
-            <span class="brand-text">João Moura</span>
-            <span class="brand-tagline">Especialista em Changan</span>
-          </span>
-        </a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="brand-block">
+          <a href="#inicio" class="brand-icon-link">
+            <img src="assets/img/changan-icon.svg" alt="CAOA Changan" width="300" height="261" class="brand-logo">
+          </a>
+          <a href="#inicio" class="brand-text-link">
+            <span class="brand-text-group">
+              <span class="brand-text">João Moura</span>
+              <span class="brand-tagline">Especialista em CAOA Changan</span>
+            </span>
+          </a>
+        </div>
 
         <nav class="nav" id="nav">
           <a href="#inicio">Início</a>
           <a href="#modelos">Modelos</a>
-          <a href="#sobre">Sobre</a>
           <a href="#diferenciais">Diferenciais</a>
           <a href="#depoimentos">Depoimentos</a>
+          <a href="#faq">Dúvidas</a>
           <a href="#contato">Contato</a>
         </nav>
-
-        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
-        </button>
       </div>
     </div>
   </header>
 
   <!-- ===== HERO ===== -->
   <section id="inicio" class="pt-20 md:pt-24">
-    <div class="p-2 md:p-4 md:h-[92vh]">
+    <div class="p-2 md:p-4 md:h-[92vh] md:min-h-[900px]">
       <div class="relative w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden md:h-full bg-background">
 
         <!-- Mídia: bloco grande e visível no mobile (vídeo vertical, impacto máximo); vira fundo full-bleed no desktop -->
         <div class="relative h-[78vh] sm:h-[82vh] md:absolute md:inset-0 md:h-full">
-          <video class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:scale-105" autoplay muted loop playsinline preload="metadata" poster="assets/img/cs75-video-poster.jpg">
+          <video id="heroVideo" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]" autoplay muted loop playsinline preload="metadata">
             <source src="assets/video/video-detalhe-luz.mp4" type="video/mp4">
           </video>
           <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-background md:to-background"></div>
-          <div class="hidden md:block absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background"></div>
+          <div class="hidden md:block absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background"></div>
           <div class="hidden md:block absolute inset-0 bg-gradient-to-r from-background/85 via-background/45 to-transparent"></div>
           <!-- Costura: funde a borda superior e inferior do vídeo com a cor de fundo da página, pra parecer o fundo em vez de um retângulo colado -->
           <div class="absolute inset-x-0 top-0 h-20 sm:h-24 md:h-28 bg-gradient-to-b from-background to-transparent pointer-events-none"></div>
           <div class="absolute inset-x-0 bottom-0 h-28 sm:h-32 md:h-36 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+
+          <!-- Frase de destaque: área escura acima do carro. No mobile o conteúdo de texto fica abaixo do
+               vídeo (fluxo normal), então a frase pode ficar centralizada em toda a largura. No desktop o
+               bloco de texto (h1 + foto + parágrafo) fica sobreposto à esquerda do vídeo, então a frase
+               desloca pra a metade direita, que é a área realmente vazia ali. -->
+          <div class="absolute inset-x-0 md:inset-x-auto md:left-[50%] md:right-4 top-[13%] md:top-[46%] z-10 flex flex-col items-center px-4 pointer-events-none">
+            <span class="hero-phrase-text">Sua vida em outro <br class="md:hidden">nível</span>
+            <span class="hero-phrase-line"></span>
+          </div>
         </div>
 
-        <!-- Badges: fluxo normal abaixo do vídeo no mobile; overlay no topo no desktop -->
-        <div class="relative md:absolute md:top-28 md:inset-x-0 px-4 sm:px-6 md:px-12 pt-4 md:pt-0 flex flex-col md:flex-row justify-between gap-3 md:gap-4 z-10 max-w-[1440px] mx-auto">
-          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-            <div class="rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-2 text-xs text-white/80" style="backdrop-filter: blur(12px);"><span class="text-accent font-medium">+8 anos</span> ajudando você a escolher seu Changan</div>
-            <div class="rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-2 text-xs text-white/80 flex items-center gap-2" style="backdrop-filter: blur(12px);">
-              <iconify-icon icon="solar:map-point-linear" width="16" height="16"></iconify-icon>
-              <span>Barra da Tijuca/RJ</span>
-            </div>
-          </div>
-          <a href="#contato" class="hidden md:inline-flex self-start items-center gap-2 text-xs text-white/70 hover:text-white transition-colors">
+        <!-- Link "veja contato": overlay no topo no desktop (badges removidos a pedido do usuário) -->
+        <div class="hidden md:flex md:absolute md:top-28 md:inset-x-0 px-4 sm:px-6 md:px-12 justify-end gap-3 md:gap-4 z-10 max-w-[1440px] mx-auto">
+          <a href="#contato" class="inline-flex items-center gap-2 text-xs text-white/70 hover:text-white transition-colors">
             <iconify-icon icon="solar:arrow-down-linear" width="16" height="16"></iconify-icon>
             <span>Veja contato e localização</span>
           </a>
@@ -198,37 +297,37 @@ tailwind.config = {
             <div class="max-w-3xl">
               <div class="flex items-center space-x-3 mb-3 md:mb-4">
                 <div class="w-5 h-1 rounded-full bg-accent"></div>
-                <span class="text-accent uppercase text-xs tracking-wider font-normal">Changan · Barra da Tijuca</span>
+                <span class="text-accent uppercase text-xs tracking-wider font-normal">CAOA Changan · Barra da Tijuca</span>
               </div>
-              <h1 class="text-3xl sm:text-5xl md:text-7xl leading-[1.02] font-medium tracking-tight mb-4 md:mb-5 max-w-[15ch] sm:max-w-none">Seu próximo carro com quem entende de verdade de Changan</h1>
+              <h1 class="font-display text-3xl sm:text-5xl md:text-6xl leading-[1.02] font-medium tracking-tight mb-4 md:mb-5 max-w-[15ch] sm:max-w-none">Seu próximo carro com quem entende de verdade de CAOA Changan</h1>
               <div class="hero-vendor-media mb-4 md:mb-5">
-                <img src="assets/img/joao-moura-novo.jpg" alt="João Moura, consultor Changan" class="hero-vendor-photo">
+                <img src="assets/img/joao-moura-logo-nova.jpg" alt="João Moura, consultor CAOA Changan" class="hero-vendor-photo">
               </div>
-              <p class="text-xs sm:text-base md:text-lg leading-relaxed font-light text-white/78 max-w-xl md:max-w-2xl">Atendimento consultivo, condições facilitadas e entrega rápida — do primeiro contato ao pós-venda.</p>
+              <p class="text-xs sm:text-base md:text-lg leading-relaxed font-light text-white/78 max-w-xl md:max-w-2xl">Com mais de 8 anos de mercado automotivo, passando por algumas das principais marcas do setor, João Moura construiu um conhecimento sólido que hoje coloca a serviço da CAOA Changan. Atendimento com transparência, paciência e presença em cada etapa — do primeiro contato ao pós-entrega.</p>
             </div>
 
             <div class="w-full lg:w-auto lg:max-w-lg rounded-[1.5rem] md:rounded-[2rem] border border-white/10 bg-white/5 p-4 sm:p-5 md:p-6" style="backdrop-filter: blur(14px);">
               <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
                 <div class="rounded-2xl bg-black/25 border border-white/10 p-3 sm:p-4">
-                  <div class="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent">+8</div>
-                  <div class="text-xs text-white/65 font-light mt-1">anos de mercado</div>
+                  <div class="font-display tabular-nums text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent">+<span class="stat-counter" data-count="8" data-duration="3000">0</span></div>
+                  <div class="text-xs text-white/65 font-normal mt-1">anos de mercado</div>
                 </div>
                 <div class="rounded-2xl bg-black/25 border border-white/10 p-3 sm:p-4">
-                  <div class="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent">500+</div>
-                  <div class="text-xs text-white/65 font-light mt-1">carros entregues</div>
+                  <div class="font-display tabular-nums text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent"><span class="stat-counter" data-count="1000" data-duration="3000">0</span>+</div>
+                  <div class="text-xs text-white/65 font-normal mt-1">carros entregues</div>
                 </div>
                 <div class="rounded-2xl bg-black/25 border border-white/10 p-3 sm:p-4">
-                  <div class="text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent">4.9★</div>
-                  <div class="text-xs text-white/65 font-light mt-1">avaliação</div>
+                  <div class="font-display tabular-nums text-xl sm:text-2xl md:text-3xl font-medium tracking-tight text-accent"><span class="stat-counter" data-count="4.98" data-duration="3000">0</span>★</div>
+                  <div class="text-xs text-white/65 font-normal mt-1">avaliação</div>
                 </div>
               </div>
               <div class="flex flex-col sm:flex-row gap-3">
-                <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20carros%20Changan%20dispon%C3%ADveis." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white px-5 py-3 text-sm font-medium hover:brightness-110 transition-all w-full sm:w-auto">
-                  <iconify-icon icon="solar:chat-round-dots-linear" width="18" height="18"></iconify-icon>
+                <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20carros%20CAOA%20Changan%20dispon%C3%ADveis." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp text-white px-5 py-3 text-sm font-medium hover:bg-whatsapp-dark transition-all w-full sm:w-auto">
+                  <iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>
                   <span>Falar no WhatsApp</span>
                 </a>
-                <a href="#modelos" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-light text-white hover:bg-white/10 transition-all w-full sm:w-auto">
-                  <iconify-icon icon="solar:car-linear" width="18" height="18"></iconify-icon>
+                <a href="#modelos" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-normal text-white hover:bg-white/10 transition-all w-full sm:w-auto">
+                  <iconify-icon icon="mdi:car-outline" width="18" height="18"></iconify-icon>
                   <span>Ver modelos</span>
                 </a>
               </div>
@@ -237,7 +336,7 @@ tailwind.config = {
                   <iconify-icon icon="solar:shield-check-linear" width="18" height="18"></iconify-icon>
                   <span>Compra com mais segurança, transparência e suporte no atendimento.</span>
                 </div>
-                <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="text-xs text-accent hover:text-white transition-colors whitespace-nowrap">@joaomoura.caoachangan</a>
+                <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs text-accent hover:text-white transition-colors whitespace-nowrap"><iconify-icon icon="mdi:instagram" width="14" height="14"></iconify-icon>@joaomoura.caoachangan</a>
               </div>
             </div>
           </div>
@@ -246,286 +345,601 @@ tailwind.config = {
     </div>
   </section>
 
+  <!-- ===== DESTAQUE UNI-T ===== -->
+  <section id="destaque-unit" class="relative overflow-hidden pt-10 md:pt-14 pb-8 md:pb-10" style="background: linear-gradient(160deg, #0a0e1a 0%, #080b14 45%);">
+    <div class="absolute -top-1/4 -right-1/4 w-[60vw] h-[60vw] max-w-[620px] max-h-[620px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(46,143,224,0.35), transparent 70%); filter: blur(60px);"></div>
+
+    <div class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12">
+      <div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-6 md:mb-8 reveal">
+        <span class="unit-badge inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider mb-4" style="background: rgba(46,143,224,0.15); border: 1px solid rgba(46,143,224,0.4); color: #6bb3f0;">★ O mais vendido</span>
+        <h2 class="font-display text-3xl md:text-5xl font-semibold tracking-tight text-white mb-2">CAOA Changan Uni-T</h2>
+        <p class="text-white/70 text-sm md:text-base">O SUV que conquistou a Barra da Tijuca</p>
+      </div>
+    </div>
+
+    <!-- Vídeo full-bleed: mesma técnica do Hero (padding mínimo, quase colado nas bordas) -->
+    <div class="relative z-10 p-2 md:p-4 reveal" data-reveal-delay="80">
+      <div class="relative w-full h-[82vh] md:h-[92vh] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden" style="box-shadow: 0 30px 70px rgba(0,0,0,0.5);">
+        <div class="absolute inset-0 z-[1] flex flex-col items-center justify-center gap-3" style="background: linear-gradient(160deg, #182238 0%, #0a0e18 100%);">
+          <iconify-icon icon="mdi:car-outline" width="48" height="48" class="text-white/25"></iconify-icon>
+          <span class="text-sm font-medium text-white/35">Vídeo do Uni-T em breve</span>
+        </div>
+        <video id="unitVideo" class="absolute inset-0 z-[2] w-full h-full object-cover md:hidden" muted loop playsinline preload="metadata" poster="assets/img/unit-montagem-poster.jpg">
+          <source src="assets/video/video-unit-montagem.mp4" type="video/mp4">
+        </video>
+        <img src="assets/img/Gemini_Generated_Image_lyek8klyek8klyek.png" alt="CAOA Changan Uni-T" class="hidden md:block absolute inset-0 z-[2] w-full h-full object-cover">
+        <!-- Mesmo tratamento de profundidade/escurecimento do Hero (mobile apenas; desktop = imagem pura) -->
+        <div class="md:hidden absolute inset-0 z-[3] pointer-events-none bg-gradient-to-b from-transparent via-black/10 to-background"></div>
+        <div class="absolute inset-x-0 top-0 h-20 sm:h-24 md:h-28 z-[4] pointer-events-none bg-gradient-to-b from-background to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-28 sm:h-32 md:h-36 z-[4] pointer-events-none bg-gradient-to-t from-background to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 mt-6 md:mt-9">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 mb-6 md:mb-9 reveal" data-reveal-delay="140">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5 text-center">
+          <iconify-icon icon="solar:cpu-bolt-linear" width="22" height="22" class="text-accent mb-2 inline-block"></iconify-icon>
+          <div class="tabular-nums text-xl md:text-2xl font-semibold text-white"><span class="unit-counter" data-count="181">0</span> cv</div>
+          <span class="block text-xs text-white/55 mt-1">Turbo</span>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5 text-center">
+          <iconify-icon icon="solar:transmission-circle-linear" width="22" height="22" class="text-accent mb-2 inline-block"></iconify-icon>
+          <div class="text-xl md:text-2xl font-semibold text-white">Automático</div>
+          <span class="block text-xs text-white/55 mt-1">Câmbio</span>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5 text-center">
+          <iconify-icon icon="solar:monitor-linear" width="22" height="22" class="text-accent mb-2 inline-block"></iconify-icon>
+          <div class="tabular-nums text-xl md:text-2xl font-semibold text-white"><span class="unit-counter" data-count="10.25">0</span>"</div>
+          <span class="block text-xs text-white/55 mt-1">Multimídia</span>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5 text-center">
+          <iconify-icon icon="solar:gas-station-linear" width="22" height="22" class="text-accent mb-2 inline-block"></iconify-icon>
+          <div class="text-xl md:text-2xl font-semibold text-white">Flex</div>
+          <span class="block text-xs text-white/55 mt-1">Combustível</span>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 md:p-5 text-center">
+          <iconify-icon icon="solar:shield-check-linear" width="22" height="22" class="text-accent mb-2 inline-block"></iconify-icon>
+          <div class="tabular-nums text-xl md:text-2xl font-semibold text-white"><span class="unit-counter" data-count="7">0</span> anos</div>
+          <span class="block text-xs text-white/55 mt-1">Garantia</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center reveal" data-reveal-delay="200">
+        <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20CAOA%20Changan%20Uni-T.%20Pode%20me%20passar%20as%20condi%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" id="cta-unit-whatsapp" class="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp text-white px-6 py-3 text-sm font-medium hover:bg-whatsapp-dark transition-all w-full sm:w-auto">
+          <iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>
+          <span>Quero saber os detalhes</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== MODELOS ===== -->
-  <section id="modelos" class="py-20 md:py-24 overflow-hidden w-full min-w-0">
+  <section id="modelos" class="pt-8 md:pt-10 pb-14 md:pb-20 overflow-hidden w-full min-w-0">
     <div class="px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto mb-10 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 reveal">
       <div>
         <div class="flex items-center space-x-3 mb-4">
           <div class="w-5 h-1 rounded-full bg-accent"></div>
-          <span class="text-accent uppercase text-xs tracking-wider font-normal">Linha Changan</span>
+          <span class="text-accent uppercase text-xs tracking-wider font-normal">Linha CAOA Changan</span>
         </div>
-        <h2 class="text-3xl md:text-5xl font-medium tracking-tight">Modelos disponíveis</h2>
+        <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tight">Modelos disponíveis</h2>
       </div>
-      <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20consultar%20o%20estoque%20de%20carros%20Changan." target="_blank" rel="noopener" class="hidden md:inline-flex items-center space-x-3 text-sm font-light hover:text-accent transition-colors pb-2 border-b border-white/10 hover:border-accent">
+      <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20consultar%20o%20estoque%20de%20carros%20CAOA%20Changan." target="_blank" rel="noopener" class="hidden md:inline-flex items-center space-x-3 text-sm font-normal hover:text-whatsapp transition-colors pb-2 border-b border-white/10 hover:border-whatsapp">
+        <iconify-icon icon="mdi:whatsapp" width="16" height="16"></iconify-icon>
         <span>Consultar estoque no WhatsApp</span>
         <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
       </a>
     </div>
 
-    <div class="flex gap-4 md:gap-6 overflow-x-auto px-4 sm:px-6 md:px-12 pb-10 md:pb-12 snap-x snap-mandatory" style="scrollbar-width: none;">
-
-      <!-- Avatr 11 -->
-      <div class="min-w-[17.5rem] sm:min-w-[20rem] md:min-w-[25rem] w-full md:w-[25rem] h-[31rem] sm:h-[34rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 snap-center">
-        <img src="assets/img/avatr-11.jpg" alt="Avatr 11" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent"></div>
-        <div class="absolute top-5 md:top-6 left-5 md:left-6 right-5 md:right-6 flex justify-between items-center z-10">
-          <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-white/5" style="backdrop-filter: blur(12px);">Mais procurado</span>
-        </div>
-        <div class="absolute bottom-5 md:bottom-6 left-5 md:left-6 right-5 md:right-6 z-10 flex flex-col">
-          <h3 class="text-2xl md:text-3xl font-medium tracking-tight mb-4">Avatr 11</h3>
-          <div class="rounded-[1.25rem] md:rounded-[1.5rem] p-4 flex flex-col gap-4 border border-white/10 bg-black/35" style="backdrop-filter: blur(14px);">
-            <div class="flex justify-between items-center pb-3 border-b border-white/10">
-              <span class="text-xs text-white/60 font-light">A partir de</span>
-              <span class="text-base md:text-lg font-medium tracking-tight text-accent">R$ 599.990</span>
-            </div>
-            <div class="grid grid-cols-2 gap-3 text-xs font-light text-white/80">
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:bolt-linear" width="16" height="16"></iconify-icon><span>585 cv</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>Automático</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:routing-2-linear" width="16" height="16"></iconify-icon><span>710 km autonomia</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:stopwatch-linear" width="16" height="16"></iconify-icon><span>0-100 em 3,9s</span></div>
-            </div>
-            <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Avatr%2011.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-light hover:bg-white/10 transition-colors">
-              <span>Tenho interesse</span>
-              <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="relative">
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 overflow-visible md:overflow-x-auto px-4 sm:px-6 md:px-12 pb-10 md:pb-12 md:snap-x md:snap-mandatory md:justify-center" id="modelosTrack" style="scrollbar-width: none;">
 
       <!-- Uni-T -->
-      <div class="min-w-[17.5rem] sm:min-w-[20rem] md:min-w-[25rem] w-full md:w-[25rem] h-[31rem] sm:h-[34rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 snap-center">
-        <img src="assets/img/uni-t-hero-desktop.jpg" alt="Changan Uni-T" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent"></div>
-        <div class="absolute top-5 md:top-6 left-5 md:left-6 right-5 md:right-6 flex justify-between items-center z-10">
-          <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-white/5" style="backdrop-filter: blur(12px);">SUV coupé</span>
-        </div>
-        <div class="absolute bottom-5 md:bottom-6 left-5 md:left-6 right-5 md:right-6 z-10 flex flex-col">
-          <h3 class="text-2xl md:text-3xl font-medium tracking-tight mb-4">Changan Uni-T</h3>
-          <div class="rounded-[1.25rem] md:rounded-[1.5rem] p-4 flex flex-col gap-4 border border-white/10 bg-black/35" style="backdrop-filter: blur(14px);">
-            <div class="flex justify-between items-center pb-3 border-b border-white/10">
-              <span class="text-xs text-white/60 font-light">A partir de</span>
-              <span class="text-base md:text-lg font-medium tracking-tight text-accent">R$ 174.990</span>
-            </div>
-            <div class="grid grid-cols-2 gap-3 text-xs font-light text-white/80">
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:cpu-bolt-linear" width="16" height="16"></iconify-icon><span>181 cv turbo</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>Automático</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:monitor-linear" width="16" height="16"></iconify-icon><span>Multimídia 10.25"</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:gas-station-linear" width="16" height="16"></iconify-icon><span>Flex</span></div>
-            </div>
-            <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Changan%20Uni-T.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-light hover:bg-white/10 transition-colors">
-              <span>Tenho interesse</span>
-              <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
-            </a>
+      <div class="min-w-0 md:min-w-[25rem] w-full md:w-[25rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 md:snap-center bg-card border border-white/10">
+        <div class="relative h-[20rem] sm:h-[22.5rem] md:h-[27.5rem] overflow-hidden">
+          <img src="assets/img/uni-t-card.jpg" alt="CAOA Changan Uni-T" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div class="absolute top-4 md:top-5 left-4 md:left-5 right-4 md:right-5 flex justify-between items-center z-10">
+            <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-black/40" style="backdrop-filter: blur(12px);">Mais procurado</span>
           </div>
+        </div>
+        <div class="p-5 md:p-6 flex flex-col gap-4">
+          <h3 class="font-display text-2xl md:text-3xl font-medium tracking-tight">CAOA Changan Uni-T</h3>
+          <div class="flex justify-between items-center pb-3 border-b border-white/10">
+            <span class="text-xs text-white/60 font-normal">A partir de</span>
+            <span class="font-display tabular-nums text-base md:text-lg font-medium tracking-tight text-accent">R$ 174.990</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs font-normal text-white/80">
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:cpu-bolt-linear" width="16" height="16"></iconify-icon><span>181 cv turbo</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>Automático</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:monitor-linear" width="16" height="16"></iconify-icon><span>Multimídia 10.25"</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:gas-station-linear" width="16" height="16"></iconify-icon><span>Flex</span></div>
+          </div>
+          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20CAOA%20Changan%20Uni-T.%20Pode%20me%20passar%20as%20condi%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-normal hover:bg-white/10 transition-colors">
+            <span class="inline-flex items-center gap-2"><iconify-icon icon="mdi:whatsapp" width="16" height="16"></iconify-icon>Tenho interesse</span>
+            <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
+          </a>
         </div>
       </div>
 
       <!-- CS75 -->
-      <div class="min-w-[17.5rem] sm:min-w-[20rem] md:min-w-[25rem] w-full md:w-[25rem] h-[31rem] sm:h-[34rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 snap-center">
-        <img src="assets/img/cs75.jpg" alt="Changan CS75" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent"></div>
-        <div class="absolute top-5 md:top-6 left-5 md:left-6 right-5 md:right-6 flex justify-between items-center z-10">
-          <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-white/5" style="backdrop-filter: blur(12px);">SUV médio</span>
-        </div>
-        <div class="absolute bottom-5 md:bottom-6 left-5 md:left-6 right-5 md:right-6 z-10 flex flex-col">
-          <h3 class="text-2xl md:text-3xl font-medium tracking-tight mb-4">Changan CS75</h3>
-          <div class="rounded-[1.25rem] md:rounded-[1.5rem] p-4 flex flex-col gap-4 border border-white/10 bg-black/35" style="backdrop-filter: blur(14px);">
-            <div class="flex justify-between items-center pb-3 border-b border-white/10">
-              <span class="text-xs text-white/60 font-light">A partir de</span>
-              <span class="text-base md:text-lg font-medium tracking-tight text-accent">R$ 199.990</span>
-            </div>
-            <div class="grid grid-cols-2 gap-3 text-xs font-light text-white/80">
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:cpu-bolt-linear" width="16" height="16"></iconify-icon><span>187 cv turbo</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>AISIN 8AT</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:gas-station-linear" width="16" height="16"></iconify-icon><span>Flex</span></div>
-              <div class="flex items-center gap-2"><iconify-icon icon="solar:shield-check-linear" width="16" height="16"></iconify-icon><span>Garantia 7 anos</span></div>
-            </div>
-            <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Changan%20CS75.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-light hover:bg-white/10 transition-colors">
-              <span>Tenho interesse</span>
-              <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
-            </a>
+      <div class="min-w-0 md:min-w-[25rem] w-full md:w-[25rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 md:snap-center bg-card border border-white/10">
+        <div class="relative h-[20rem] sm:h-[22.5rem] md:h-[27.5rem] overflow-hidden">
+          <img src="assets/img/cs75-card.jpg" alt="CAOA Changan CS75" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div class="absolute top-4 md:top-5 left-4 md:left-5 right-4 md:right-5 flex justify-between items-center z-10">
+            <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-black/40" style="backdrop-filter: blur(12px);">SUV médio</span>
           </div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== SOBRE ===== -->
-  <section id="sobre" class="py-20 md:py-32 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
-    <div class="flex flex-col lg:flex-row justify-between gap-12 md:gap-16 lg:gap-24">
-      <div class="lg:w-1/2 reveal">
-        <div class="flex items-center space-x-3 mb-4">
-          <div class="w-5 h-1 rounded-full bg-accent"></div>
-          <span class="text-accent uppercase text-xs tracking-wider font-normal">Sobre o vendedor</span>
-        </div>
-        <h2 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-6 md:mb-8 max-w-2xl">Mais de 8 anos ajudando clientes a encontrarem o Changan ideal na Barra da Tijuca</h2>
-        <div class="border-b border-white/10 pb-6 md:pb-8 max-w-2xl">
-          <p class="text-muted font-light text-sm md:text-base leading-relaxed mb-4">João Moura atua como consultor Changan com um propósito simples: ajudar cada cliente a encontrar o modelo certo, com atendimento transparente e uma experiência de compra segura do início ao fim.</p>
-          <p class="text-muted font-light text-sm md:text-base leading-relaxed mb-4">Ao longo de mais de 8 anos no mercado automotivo, construiu sua reputação com base em confiança, agilidade e cuidado em cada atendimento.</p>
-          <p class="text-muted font-light text-sm md:text-base leading-relaxed">Aqui, você encontra atendimento próximo, avaliação do seu usado na troca, apoio na simulação de financiamento e a confiança de negociar direto com quem entende de verdade de Changan.</p>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20carros%20Changan%20dispon%C3%ADveis." target="_blank" rel="noopener" class="inline-flex items-center gap-3 group">
-            <span class="text-base font-light group-hover:text-accent transition-colors">Quero atendimento no WhatsApp</span>
-            <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white group-hover:scale-105 transition-transform">
-              <iconify-icon icon="solar:arrow-right-linear" width="20" height="20"></iconify-icon>
-            </div>
+        <div class="p-5 md:p-6 flex flex-col gap-4">
+          <h3 class="font-display text-2xl md:text-3xl font-medium tracking-tight">CAOA Changan CS75</h3>
+          <div class="flex justify-between items-center pb-3 border-b border-white/10">
+            <span class="text-xs text-white/60 font-normal">A partir de</span>
+            <span class="font-display tabular-nums text-base md:text-lg font-medium tracking-tight text-accent">R$ 199.990</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs font-normal text-white/80">
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:cpu-bolt-linear" width="16" height="16"></iconify-icon><span>187 cv turbo</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>AISIN 8AT</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:gas-station-linear" width="16" height="16"></iconify-icon><span>Flex</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:shield-check-linear" width="16" height="16"></iconify-icon><span>Garantia 7 anos</span></div>
+          </div>
+          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20CAOA%20Changan%20CS75.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-normal hover:bg-white/10 transition-colors">
+            <span class="inline-flex items-center gap-2"><iconify-icon icon="mdi:whatsapp" width="16" height="16"></iconify-icon>Tenho interesse</span>
+            <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
           </a>
         </div>
       </div>
-      <div class="lg:w-1/2 grid grid-cols-2 gap-y-8 md:gap-y-10 gap-x-6 md:gap-x-8 reveal">
-        <div class="flex flex-col">
-          <div class="flex items-end mb-2"><span class="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">+8</span></div>
-          <span class="text-muted font-light text-sm">anos no mercado automotivo</span>
+
+      <!-- Avatr 11 -->
+      <div class="min-w-0 md:min-w-[25rem] w-full md:w-[25rem] relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shrink-0 md:snap-center bg-card border border-white/10">
+        <div class="relative h-[20rem] sm:h-[22.5rem] md:h-[27.5rem] overflow-hidden">
+          <img src="assets/img/avatr-11-card.jpg" alt="Avatr 11" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+          <div class="absolute top-4 md:top-5 left-4 md:left-5 right-4 md:right-5 flex justify-between items-center z-10">
+            <span class="rounded-full px-3 md:px-4 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-black/40" style="backdrop-filter: blur(12px);">Mais luxuoso</span>
+          </div>
         </div>
-        <div class="flex flex-col">
-          <div class="flex items-end mb-2"><span class="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">500+</span></div>
-          <span class="text-muted font-light text-sm">carros entregues com atendimento próximo</span>
-        </div>
-        <div class="flex flex-col">
-          <div class="flex items-end mb-2"><span class="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">4.9★</span></div>
-          <span class="text-muted font-light text-sm">avaliação média dos clientes</span>
-        </div>
-        <div class="flex flex-col">
-          <div class="flex items-end mb-2"><span class="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight">Barra da Tijuca</span></div>
-          <span class="text-muted font-light text-sm">localização estratégica e fácil acesso</span>
+        <div class="p-5 md:p-6 flex flex-col gap-4">
+          <h3 class="font-display text-2xl md:text-3xl font-medium tracking-tight">Avatr 11</h3>
+          <div class="flex justify-between items-center pb-3 border-b border-white/10">
+            <span class="text-xs text-white/60 font-normal">A partir de</span>
+            <span class="font-display tabular-nums text-base md:text-lg font-medium tracking-tight text-accent">R$ 599.990</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs font-normal text-white/80">
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:bolt-linear" width="16" height="16"></iconify-icon><span>585 cv</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:transmission-circle-linear" width="16" height="16"></iconify-icon><span>Automático</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:routing-2-linear" width="16" height="16"></iconify-icon><span>710 km autonomia</span></div>
+            <div class="flex items-center gap-2"><iconify-icon icon="solar:stopwatch-linear" width="16" height="16"></iconify-icon><span>0-100 em 3,9s</span></div>
+          </div>
+          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Avatr%2011.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" rel="noopener" class="inline-flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-normal hover:bg-white/10 transition-colors">
+            <span class="inline-flex items-center gap-2"><iconify-icon icon="mdi:whatsapp" width="16" height="16"></iconify-icon>Tenho interesse</span>
+            <div class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center"><iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon></div>
+          </a>
         </div>
       </div>
+
+      </div>
+
     </div>
   </section>
 
   <!-- ===== DIFERENCIAIS ===== -->
-  <section id="diferenciais" class="py-20 md:py-24 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative">
+  <section id="diferenciais" class="py-14 md:py-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38rem] h-[38rem] bg-accent/5 rounded-full -z-10" style="filter: blur(6rem);"></div>
     <div class="text-center mb-12 md:mb-16 flex flex-col items-center reveal">
       <div class="flex items-center space-x-3 mb-4">
         <div class="w-5 h-1 rounded-full bg-accent"></div>
         <span class="text-accent uppercase text-xs tracking-wider font-normal">Diferenciais</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">Mais que um vendedor, seu consultor de confiança pra comprar Changan</h2>
+      <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">Mais que um vendedor, seu consultor de confiança pra comprar <span class="whitespace-nowrap">CAOA Changan</span></h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:car-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Linha completa Changan</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Modelos 0km selecionados, das SUVs compactas ao elétrico Avatr 11.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div class="bg-card rounded-[1.25rem] md:rounded-[1.5rem] p-5 md:p-6 border border-border hover:border-white/10 transition-colors group reveal">
+        <div class="w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center text-accent mb-4 group-hover:scale-105 transition-transform"><iconify-icon icon="mdi:car-outline" width="20" height="20"></iconify-icon></div>
+        <h3 class="text-sm font-medium tracking-tight mb-1.5">Linha completa CAOA Changan</h3>
+        <p class="text-muted font-normal text-xs leading-relaxed">Da linha compacta ao elétrico Avatr 11.</p>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:shield-check-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Procedência e garantia de fábrica</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Veículos 0km com garantia oficial Changan e rede de assistência especializada.</p>
+      <div class="bg-card rounded-[1.25rem] md:rounded-[1.5rem] p-5 md:p-6 border border-border hover:border-white/10 transition-colors group reveal">
+        <div class="w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center text-accent mb-4 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:shield-check-linear" width="20" height="20"></iconify-icon></div>
+        <h3 class="text-sm font-medium tracking-tight mb-1.5">Garantia de fábrica</h3>
+        <p class="text-muted font-normal text-xs leading-relaxed">0km com garantia oficial CAOA Changan.</p>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:user-hand-up-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Atendimento personalizado</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Entendemos sua necessidade antes de indicar o modelo ideal pro seu perfil.</p>
+      <div class="bg-card rounded-[1.25rem] md:rounded-[1.5rem] p-5 md:p-6 border border-border hover:border-white/10 transition-colors group reveal">
+        <div class="w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center text-accent mb-4 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:user-hand-up-linear" width="20" height="20"></iconify-icon></div>
+        <h3 class="text-sm font-medium tracking-tight mb-1.5">Atendimento personalizado</h3>
+        <p class="text-muted font-normal text-xs leading-relaxed">O modelo certo pro seu perfil.</p>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:card-transfer-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Facilidade no financiamento</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Simulação rápida nos principais bancos, buscando as melhores condições.</p>
-      </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:refresh-circle-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Avaliamos seu usado na troca</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Seu veículo atual pode entrar no negócio, com avaliação transparente.</p>
-      </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border hover:border-white/10 transition-colors group reveal">
-        <div class="w-14 h-14 rounded-2xl bg-background border border-border flex items-center justify-center text-accent mb-6 md:mb-8 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:map-point-linear" width="24" height="24"></iconify-icon></div>
-        <h3 class="text-xl font-medium tracking-tight mb-4">Localização de fácil acesso</h3>
-        <p class="text-muted font-light text-sm leading-relaxed">Estamos na Barra da Tijuca, ponto estratégico pra você visitar com comodidade.</p>
+      <div class="bg-card rounded-[1.25rem] md:rounded-[1.5rem] p-5 md:p-6 border border-border hover:border-white/10 transition-colors group reveal">
+        <div class="w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center text-accent mb-4 group-hover:scale-105 transition-transform"><iconify-icon icon="solar:card-transfer-linear" width="20" height="20"></iconify-icon></div>
+        <h3 class="text-sm font-medium tracking-tight mb-1.5">Consórcio e troca facilitados</h3>
+        <p class="text-muted font-normal text-xs leading-relaxed">Condições facilitadas e avaliação do seu usado.</p>
       </div>
     </div>
-  </section>
 
-  <!-- ===== COMO FUNCIONA ===== -->
-  <section class="py-20 md:py-24 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
-    <div class="flex flex-col lg:flex-row justify-between gap-10 md:gap-12 lg:gap-20">
-      <div class="lg:w-[34rem] reveal">
-        <div class="flex items-center space-x-3 mb-4">
-          <div class="w-5 h-1 rounded-full bg-accent"></div>
-          <span class="text-accent uppercase text-xs tracking-wider font-normal">Como funciona</span>
+    <!-- Como funciona: condensado em passos curtos, sem parágrafos longos -->
+    <div class="mt-8 md:mt-10 rounded-[1.5rem] md:rounded-[2rem] border border-border bg-card p-5 md:p-8 reveal">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+        <div class="flex items-start gap-3">
+          <span class="text-accent text-sm font-medium shrink-0">01</span>
+          <span class="text-sm font-normal text-white/85">Escolha seu modelo</span>
         </div>
-        <h2 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-6">Um processo simples e seguro para você sair de Changan 0km</h2>
-        <p class="text-muted text-sm md:text-base font-light leading-relaxed max-w-xl">Do primeiro contato à entrega, o João busca tornar sua experiência mais clara, ágil e confiável.</p>
-      </div>
-      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 reveal">
-        <div class="rounded-[1.5rem] md:rounded-[2rem] border border-border bg-card p-6 md:p-8">
-          <div class="text-accent text-sm font-medium mb-4">01</div>
-          <h3 class="text-xl font-medium tracking-tight mb-3">Escolha seu modelo Changan</h3>
-          <p class="text-muted text-sm font-light leading-relaxed">Veja a linha completa e fale com o João pra encontrar o modelo ideal pro seu momento.</p>
+        <div class="flex items-start gap-3">
+          <span class="text-accent text-sm font-medium shrink-0">02</span>
+          <span class="text-sm font-normal text-white/85">Fale no WhatsApp</span>
         </div>
-        <div class="rounded-[1.5rem] md:rounded-[2rem] border border-border bg-card p-6 md:p-8">
-          <div class="text-accent text-sm font-medium mb-4">02</div>
-          <h3 class="text-xl font-medium tracking-tight mb-3">Fale com o João no WhatsApp</h3>
-          <p class="text-muted text-sm font-light leading-relaxed">Tire dúvidas, receba informações e tenha atendimento rápido e direto.</p>
+        <div class="flex items-start gap-3">
+          <span class="text-accent text-sm font-medium shrink-0">03</span>
+          <span class="text-sm font-normal text-white/85">Consórcio ou troca</span>
         </div>
-        <div class="rounded-[1.5rem] md:rounded-[2rem] border border-border bg-card p-6 md:p-8">
-          <div class="text-accent text-sm font-medium mb-4">03</div>
-          <h3 class="text-xl font-medium tracking-tight mb-3">Simule financiamento ou troca</h3>
-          <p class="text-muted text-sm font-light leading-relaxed">Analisamos as melhores condições, inclusive com avaliação do seu usado.</p>
-        </div>
-        <div class="rounded-[1.5rem] md:rounded-[2rem] border border-border bg-card p-6 md:p-8">
-          <div class="text-accent text-sm font-medium mb-4">04</div>
-          <h3 class="text-xl font-medium tracking-tight mb-3">Feche com segurança e agende a entrega</h3>
-          <p class="text-muted text-sm font-light leading-relaxed">Negociação transparente, suporte no processo e entrega rápida do seu 0km.</p>
+        <div class="flex items-start gap-3">
+          <span class="text-accent text-sm font-medium shrink-0">04</span>
+          <span class="text-sm font-normal text-white/85">Feche e receba seu 0km</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== DEPOIMENTOS ===== -->
-  <section id="depoimentos" class="py-20 md:py-24 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative overflow-hidden">
+  <section id="depoimentos" class="py-14 md:py-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto relative overflow-hidden">
     <div class="flex flex-col items-center text-center mb-12 md:mb-16 relative z-10 reveal">
       <div class="flex items-center space-x-3 mb-4">
         <div class="w-5 h-1 rounded-full bg-accent"></div>
         <span class="text-accent uppercase text-xs tracking-wider font-normal">Depoimentos</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">Quem comprou, recomenda</h2>
+      <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tight max-w-3xl leading-tight">Quem comprou, recomenda</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border reveal">
-        <div class="flex flex-col">
-          <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5"><iconify-icon icon="solar:user-linear" width="20" height="20"></iconify-icon></div>
-          <p class="text-sm font-light text-white/80 leading-relaxed mb-6">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</p>
-          <div class="w-8 h-px bg-border mb-5"></div>
-          <h4 class="font-medium text-sm tracking-tight">Marcos Almeida</h4>
-          <span class="text-xs text-muted font-light mt-1">Barra da Tijuca, RJ</span>
+
+    <!-- Post estilo social, com o vídeo real de entrega ao cliente -->
+    <div class="max-w-[380px] mx-auto mb-12 md:mb-16 rounded-[2.5rem] overflow-hidden bg-[#0b0e14] border border-white/10 shadow-2xl reveal">
+      <div class="flex items-center justify-between px-5 pt-3 pb-1 text-xs text-white/90 font-medium">
+        <span>9:41</span>
+        <div class="flex items-center gap-1.5">
+          <iconify-icon icon="solar:wifi-router-minimalistic-linear" width="14" height="14"></iconify-icon>
+          <div class="w-6 h-3 rounded-[3px] border border-white/60 relative flex items-center px-[1px]">
+            <div class="w-4 h-1.5 bg-white/90 rounded-[1px]"></div>
+          </div>
         </div>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border reveal">
-        <div class="flex flex-col">
-          <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5"><iconify-icon icon="solar:user-linear" width="20" height="20"></iconify-icon></div>
-          <p class="text-sm font-light text-white/80 leading-relaxed mb-6">"Troquei meu carro usado e o João conseguiu uma condição ótima. Entrega rápida e sem dor de cabeça."</p>
-          <div class="w-8 h-px bg-border mb-5"></div>
-          <h4 class="font-medium text-sm tracking-tight">Fernanda Costa</h4>
-          <span class="text-xs text-muted font-light mt-1">Recreio dos Bandeirantes, RJ</span>
+
+      <div class="flex items-center gap-3 px-4 py-3">
+        <img src="assets/img/joao-moura-cutout.png" alt="João Moura" loading="lazy" class="w-10 h-10 rounded-full object-cover object-top border border-white/10">
+        <div class="flex flex-col leading-tight">
+          <span class="text-sm font-medium text-white">João Moura</span>
+          <span class="text-xs text-muted">Consultor CAOA Changan · Barra da Tijuca</span>
         </div>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border reveal">
-        <div class="flex flex-col">
-          <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5"><iconify-icon icon="solar:user-linear" width="20" height="20"></iconify-icon></div>
-          <p class="text-sm font-light text-white/80 leading-relaxed mb-6">"Já é o segundo carro que compro com ele. Atendimento honesto e sempre disponível pra tirar dúvidas."</p>
-          <div class="w-8 h-px bg-border mb-5"></div>
-          <h4 class="font-medium text-sm tracking-tight">Ricardo Nunes</h4>
-          <span class="text-xs text-muted font-light mt-1">Jacarepaguá, RJ</span>
+
+      <div class="relative aspect-[4/5] bg-black overflow-hidden" id="proofMedia">
+        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" poster="assets/img/video-entrega-carro-poster.jpg" style="opacity: 1;">
+          <source src="assets/video/video-entrega-carro.mp4" type="video/mp4">
+        </video>
+        <video class="proof-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-500" muted playsinline preload="metadata" poster="assets/img/video-entrega-poster.jpg" style="opacity: 0;">
+          <source src="assets/video/video-entrega.mp4" type="video/mp4">
+        </video>
+
+        <span class="absolute top-4 left-4 z-10 rounded-full px-3 py-1.5 text-xs font-medium tracking-wider uppercase border border-white/10 bg-black/40" style="backdrop-filter: blur(12px);">Entrega ao vivo</span>
+
+        <button id="proofNext" type="button" aria-label="Próximo vídeo" class="absolute top-1/2 right-3 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 border border-white/10 flex items-center justify-center text-white hover:bg-black/60 transition-colors" style="backdrop-filter: blur(12px);">
+          <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+        </button>
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2" id="proofDots">
+          <span class="h-2 w-5 rounded-full bg-white transition-all"></span>
+          <span class="h-2 w-2 rounded-full bg-white/40 transition-all"></span>
         </div>
       </div>
-      <div class="bg-card rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-border reveal">
-        <div class="flex flex-col">
-          <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent mb-5"><iconify-icon icon="solar:user-linear" width="20" height="20"></iconify-icon></div>
-          <p class="text-sm font-light text-white/80 leading-relaxed mb-6">"Indiquei o João pra minha família toda. Profissional sério e que realmente se importa com o cliente."</p>
-          <div class="w-8 h-px bg-border mb-5"></div>
-          <h4 class="font-medium text-sm tracking-tight">Camila Duarte</h4>
-          <span class="text-xs text-muted font-light mt-1">Barra da Tijuca, RJ</span>
+
+      <div class="px-4 pt-4">
+        <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Vi%20o%20v%C3%ADdeo%20de%20entrega%20e%20quero%20falar%20com%20o%20Jo%C3%A3o." target="_blank" rel="noopener" class="flex items-center justify-between w-full rounded-full bg-whatsapp text-white px-5 py-3 text-sm font-medium hover:bg-whatsapp-dark transition-all">
+          <span class="inline-flex items-center gap-2"><iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>Falar com o João no WhatsApp</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" height="18"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-4 text-xs text-muted text-center">
+        <span class="inline-flex items-center gap-1.5 whitespace-nowrap"><iconify-icon icon="solar:heart-linear" width="16" height="16"></iconify-icon>Cliente satisfeito</span>
+        <span class="inline-flex items-center gap-1.5 whitespace-nowrap"><iconify-icon icon="solar:chat-round-linear" width="16" height="16"></iconify-icon>Entrega real</span>
+        <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 whitespace-nowrap text-accent hover:text-white transition-colors"><iconify-icon icon="mdi:instagram" width="14" height="14"></iconify-icon>@joaomoura.caoachangan</a>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mb-10 md:mb-12 reveal">
+      <iconify-icon icon="solar:star-bold" width="18" height="18" class="text-amber-400"></iconify-icon>
+      <iconify-icon icon="solar:star-bold" width="18" height="18" class="text-amber-400"></iconify-icon>
+      <iconify-icon icon="solar:star-bold" width="18" height="18" class="text-amber-400"></iconify-icon>
+      <iconify-icon icon="solar:star-bold" width="18" height="18" class="text-amber-400"></iconify-icon>
+      <iconify-icon icon="solar:star-bold" width="18" height="18" class="text-amber-400"></iconify-icon>
+      <span class="ml-2 text-sm text-muted font-normal">4.9/5 · avaliação média dos clientes</span>
+    </div>
+
+    <div class="testi-marquee grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 reveal" style="mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);">
+      <!-- Coluna 1 - desce -->
+      <div class="overflow-hidden h-[34rem] md:h-[40rem]">
+        <div data-scroll-column="1" class="space-y-6">
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Troquei meu carro usado e o João conseguiu uma condição ótima. Entrega rápida e sem dor de cabeça."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Fernanda Costa</div>
+                <div class="text-xs text-muted font-normal">Recreio dos Bandeirantes, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Já é o segundo carro que compro com ele. Atendimento honesto e sempre disponível pra tirar dúvidas."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Ricardo Nunes</div>
+                <div class="text-xs text-muted font-normal">Jacarepaguá, RJ</div>
+              </div>
+            </div>
+          </article>
+          <!-- Duplicata do conjunto completo pro loop contínuo (mesma ordem) -->
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Troquei meu carro usado e o João conseguiu uma condição ótima. Entrega rápida e sem dor de cabeça."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Fernanda Costa</div>
+                <div class="text-xs text-muted font-normal">Recreio dos Bandeirantes, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Já é o segundo carro que compro com ele. Atendimento honesto e sempre disponível pra tirar dúvidas."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Ricardo Nunes</div>
+                <div class="text-xs text-muted font-normal">Jacarepaguá, RJ</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Coluna 2 - desce -->
+      <div class="overflow-hidden h-[34rem] md:h-[40rem]">
+        <div data-scroll-column="2" class="space-y-6">
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Indiquei o João pra minha família toda. Profissional sério e que realmente se importa com o cliente."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Camila Duarte</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Troquei meu carro usado e o João conseguiu uma condição ótima. Entrega rápida e sem dor de cabeça."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Fernanda Costa</div>
+                <div class="text-xs text-muted font-normal">Recreio dos Bandeirantes, RJ</div>
+              </div>
+            </div>
+          </article>
+          <!-- Duplicata do conjunto completo pro loop contínuo (mesma ordem) -->
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Indiquei o João pra minha família toda. Profissional sério e que realmente se importa com o cliente."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Camila Duarte</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Troquei meu carro usado e o João conseguiu uma condição ótima. Entrega rápida e sem dor de cabeça."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Fernanda Costa</div>
+                <div class="text-xs text-muted font-normal">Recreio dos Bandeirantes, RJ</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Coluna 3 - desce -->
+      <div class="hidden md:block overflow-hidden h-[34rem] md:h-[40rem]">
+        <div data-scroll-column="3" class="space-y-6">
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Já é o segundo carro que compro com ele. Atendimento honesto e sempre disponível pra tirar dúvidas."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Ricardo Nunes</div>
+                <div class="text-xs text-muted font-normal">Jacarepaguá, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Indiquei o João pra minha família toda. Profissional sério e que realmente se importa com o cliente."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Camila Duarte</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <!-- Duplicata do conjunto completo pro loop contínuo (mesma ordem) -->
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Já é o segundo carro que compro com ele. Atendimento honesto e sempre disponível pra tirar dúvidas."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Ricardo Nunes</div>
+                <div class="text-xs text-muted font-normal">Jacarepaguá, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Indiquei o João pra minha família toda. Profissional sério e que realmente se importa com o cliente."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Camila Duarte</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-2xl border p-6 border-white/10 bg-card">
+            <iconify-icon icon="solar:quote-up-linear" width="20" height="20" class="text-accent mb-3 block"></iconify-icon>
+            <blockquote class="text-sm sm:text-base text-white/90 font-normal leading-relaxed">"Comprei meu CS35 Plus com o João e o atendimento foi impecável do início ao fim. Recomendo de olhos fechados."</blockquote>
+            <div class="mt-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent shrink-0"><iconify-icon icon="solar:user-linear" width="18" height="18"></iconify-icon></div>
+              <div>
+                <div class="text-sm font-medium">Marcos Almeida</div>
+                <div class="text-xs text-muted font-normal">Barra da Tijuca, RJ</div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="py-14 md:py-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
+    <div class="flex flex-col items-center text-center mb-12 md:mb-16 reveal">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-5 h-1 rounded-full bg-accent"></div>
+        <span class="text-accent uppercase text-xs tracking-wider font-normal">Dúvidas frequentes</span>
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tight max-w-2xl leading-tight">Perguntas que todo cliente faz</h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto flex flex-col gap-3 reveal">
+      <div class="faq-item rounded-[1.25rem] md:rounded-[1.5rem] border border-border bg-card overflow-hidden">
+        <button type="button" class="faq-question w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left">
+          <span class="text-sm md:text-base font-medium pr-4">Como funciona o consórcio?</span>
+          <iconify-icon icon="solar:add-circle-linear" width="22" height="22" class="faq-icon text-accent shrink-0 transition-transform duration-300"></iconify-icon>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="text-muted text-sm font-normal leading-relaxed px-5 md:px-6 pb-5 md:pb-6">Trabalhamos com as melhores condições de consórcio do mercado, buscando o plano ideal pro seu perfil. A simulação é rápida e sem compromisso.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rounded-[1.25rem] md:rounded-[1.5rem] border border-border bg-card overflow-hidden">
+        <button type="button" class="faq-question w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left">
+          <span class="text-sm md:text-base font-medium pr-4">Posso fazer um test-drive antes de decidir?</span>
+          <iconify-icon icon="solar:add-circle-linear" width="22" height="22" class="faq-icon text-accent shrink-0 transition-transform duration-300"></iconify-icon>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="text-muted text-sm font-normal leading-relaxed px-5 md:px-6 pb-5 md:pb-6">Sim! Basta agendar pelo WhatsApp o modelo e o melhor horário pra você, e o João organiza tudo na concessionária.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rounded-[1.25rem] md:rounded-[1.5rem] border border-border bg-card overflow-hidden">
+        <button type="button" class="faq-question w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left">
+          <span class="text-sm md:text-base font-medium pr-4">Tenho um carro usado, dá pra usar na troca?</span>
+          <iconify-icon icon="solar:add-circle-linear" width="22" height="22" class="faq-icon text-accent shrink-0 transition-transform duration-300"></iconify-icon>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="text-muted text-sm font-normal leading-relaxed px-5 md:px-6 pb-5 md:pb-6">Sim, fazemos a avaliação do seu veículo usado com transparência e abatemos o valor diretamente na compra do novo CAOA Changan.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rounded-[1.25rem] md:rounded-[1.5rem] border border-border bg-card overflow-hidden">
+        <button type="button" class="faq-question w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left">
+          <span class="text-sm md:text-base font-medium pr-4">Qual a garantia dos veículos CAOA Changan?</span>
+          <iconify-icon icon="solar:add-circle-linear" width="22" height="22" class="faq-icon text-accent shrink-0 transition-transform duration-300"></iconify-icon>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="text-muted text-sm font-normal leading-relaxed px-5 md:px-6 pb-5 md:pb-6">Os modelos CAOA Changan contam com garantia de fábrica e rede de assistência técnica especializada. O João te explica os detalhes de cada modelo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item rounded-[1.25rem] md:rounded-[1.5rem] border border-border bg-card overflow-hidden">
+        <button type="button" class="faq-question w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left">
+          <span class="text-sm md:text-base font-medium pr-4">Quanto tempo leva pra sair com o carro?</span>
+          <iconify-icon icon="solar:add-circle-linear" width="22" height="22" class="faq-icon text-accent shrink-0 transition-transform duration-300"></iconify-icon>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="text-muted text-sm font-normal leading-relaxed px-5 md:px-6 pb-5 md:pb-6">O prazo varia conforme o modelo e a disponibilidade em estoque, mas o João agiliza tudo com total transparência sobre os prazos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 md:mt-10 text-center reveal">
+      <p class="text-sm text-muted font-normal">Não achou sua dúvida aqui?</p>
+      <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%2C%20consegue%20me%20ajudar." target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-3 rounded-full border border-whatsapp/30 bg-whatsapp/10 px-4 py-2.5 text-sm text-whatsapp hover:bg-whatsapp hover:text-white transition-colors font-medium"><iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>Chama no WhatsApp</a>
+    </div>
+  </section>
+
   <!-- ===== CONTATO ===== -->
-  <section id="contato" class="py-20 md:py-24 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
+  <section id="contato" class="py-14 md:py-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
     <div class="rounded-[1.5rem] md:rounded-[2rem] border border-white/10 bg-gradient-to-br from-card to-black p-6 sm:p-8 md:p-12 lg:p-14 relative overflow-hidden reveal">
       <div class="absolute top-0 right-0 w-[22rem] h-[22rem] bg-accent/10 rounded-full" style="filter: blur(6rem);"></div>
       <div class="relative z-10 flex flex-col lg:flex-row justify-between gap-8 md:gap-10 lg:items-end">
@@ -534,33 +948,34 @@ tailwind.config = {
             <div class="w-5 h-1 rounded-full bg-accent"></div>
             <span class="text-accent uppercase text-xs tracking-wider font-normal">Contato</span>
           </div>
-          <h2 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-5">Pronto(a) pra realizar o seu?</h2>
-          <p class="text-white/75 text-sm md:text-base font-light leading-relaxed max-w-2xl">Fale com o João, conheça a linha Changan disponível e receba atendimento rápido pra encontrar o modelo ideal pra você.</p>
+          <h2 class="font-display text-3xl md:text-5xl font-medium tracking-tight leading-tight mb-5">Fale com o João e garanta seu <span class="whitespace-nowrap">CAOA Changan</span> 0km</h2>
+          <p class="text-white/75 text-sm md:text-base font-normal leading-relaxed max-w-2xl">Conheça a linha CAOA Changan disponível e receba atendimento rápido pra fechar negócio com quem entende de verdade.</p>
+          <img src="assets/img/fachada-nova.jpg" alt="Fachada da concessionária CAOA Changan, Barra da Tijuca" loading="lazy" width="864" height="1221" class="w-full h-[360px] md:h-auto object-cover md:object-contain rounded-[1.25rem] md:rounded-[1.5rem] border border-white/10 mt-6 md:mt-8">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 md:mt-8">
             <div class="rounded-[1.25rem] md:rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div class="flex items-center gap-2 text-accent mb-3"><iconify-icon icon="solar:chat-round-dots-linear" width="18" height="18"></iconify-icon><span class="text-xs uppercase tracking-wider">WhatsApp</span></div>
-              <p class="text-sm text-white/80 font-light leading-relaxed">Atendimento rápido para tirar dúvidas e consultar modelos.</p>
+              <div class="flex items-center gap-2 text-accent mb-3"><iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon><span class="text-xs uppercase tracking-wider">WhatsApp</span></div>
+              <p class="text-sm text-white/80 font-normal leading-relaxed">Atendimento rápido para tirar dúvidas e consultar modelos.</p>
             </div>
-            <div class="rounded-[1.25rem] md:rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <div class="flex items-center gap-2 text-accent mb-3"><iconify-icon icon="solar:camera-linear" width="18" height="18"></iconify-icon><span class="text-xs uppercase tracking-wider">Instagram</span></div>
-              <p class="text-sm text-white/80 font-light leading-relaxed">@joaomoura.caoachangan</p>
-            </div>
+            <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="block rounded-[1.25rem] md:rounded-[1.5rem] border border-white/10 bg-white/5 p-5 hover:bg-white/10 hover:border-white/20 transition-colors">
+              <div class="flex items-center gap-2 text-accent mb-3"><iconify-icon icon="mdi:instagram" width="18" height="18"></iconify-icon><span class="text-xs uppercase tracking-wider">Instagram</span></div>
+              <p class="text-sm text-white/80 font-normal leading-relaxed">@joaomoura.caoachangan</p>
+            </a>
             <div class="rounded-[1.25rem] md:rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
               <div class="flex items-center gap-2 text-accent mb-3"><iconify-icon icon="solar:map-point-linear" width="18" height="18"></iconify-icon><span class="text-xs uppercase tracking-wider">Endereço</span></div>
-              <p class="text-sm text-white/80 font-light leading-relaxed">Av. das Américas, 4541 - Barra da Tijuca, RJ</p>
+              <p class="text-sm text-white/80 font-normal leading-relaxed">Av. das Américas, 4541 - Barra da Tijuca, RJ</p>
             </div>
           </div>
         </div>
         <div class="w-full lg:w-auto flex flex-col gap-3">
-          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20%C3%A0%20concession%C3%A1ria." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-medium hover:brightness-110 transition-all w-full lg:min-w-[16rem]">
-            <iconify-icon icon="solar:chat-round-dots-linear" width="18" height="18"></iconify-icon>
+          <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Quero%20agendar%20uma%20visita%20%C3%A0%20concession%C3%A1ria." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp text-white px-6 py-3 text-sm font-medium hover:bg-whatsapp-dark transition-all w-full lg:min-w-[16rem]">
+            <iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>
             <span>Chamar no WhatsApp</span>
           </a>
-          <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-light text-white hover:bg-white/10 transition-all w-full lg:min-w-[16rem]">
-            <iconify-icon icon="solar:camera-linear" width="18" height="18"></iconify-icon>
+          <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-normal text-white hover:bg-white/10 transition-all w-full lg:min-w-[16rem]">
+            <iconify-icon icon="mdi:instagram" width="18" height="18"></iconify-icon>
             <span>Seguir no Instagram</span>
           </a>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+das+Am%C3%A9ricas%2C+4541%2C+Barra+da+Tijuca%2C+Rio+de+Janeiro" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-light text-white hover:bg-white/10 transition-all w-full lg:min-w-[16rem]">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Av.+das+Am%C3%A9ricas%2C+4541%2C+Barra+da+Tijuca%2C+Rio+de+Janeiro" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-normal text-white hover:bg-white/10 transition-all w-full lg:min-w-[16rem]">
             <iconify-icon icon="solar:map-point-linear" width="18" height="18"></iconify-icon>
             <span>Ver no mapa</span>
           </a>
@@ -574,45 +989,44 @@ tailwind.config = {
     <div class="flex flex-col lg:flex-row justify-between gap-8">
       <div class="max-w-xl">
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center overflow-hidden p-1">
-            <img src="assets/img/changan-icon.png" alt="Changan" class="w-full h-full object-contain" style="filter: brightness(0) invert(1);">
-          </div>
+          <img src="assets/img/changan-icon.svg" alt="CAOA Changan" loading="lazy" width="300" height="261" class="h-8 w-auto" style="filter: brightness(0) invert(1);">
           <span class="text-base font-medium tracking-tight">João Moura</span>
         </div>
-        <p class="text-xs text-muted font-light leading-relaxed">Consultor Changan na Barra da Tijuca, com atendimento consultivo do primeiro contato ao pós-venda.</p>
+        <p class="text-xs text-muted font-normal leading-relaxed">Consultor CAOA Changan na Barra da Tijuca, com atendimento consultivo do primeiro contato ao pós-venda.</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-xs">
         <div>
           <h4 class="text-white font-medium mb-3">Contato</h4>
-          <div class="flex flex-col gap-2 text-muted font-light">
-            <a href="https://wa.me/5521990876897" target="_blank" rel="noopener" class="hover:text-white transition-colors">WhatsApp</a>
-            <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="hover:text-white transition-colors">Instagram</a>
+          <div class="flex flex-col gap-2 text-muted font-normal">
+            <a href="https://wa.me/5521990876897" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-whatsapp transition-colors"><iconify-icon icon="mdi:whatsapp" width="14" height="14"></iconify-icon>WhatsApp</a>
+            <a href="https://instagram.com/joaomoura.caoachangan" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-white transition-colors"><iconify-icon icon="mdi:instagram" width="14" height="14"></iconify-icon>Instagram</a>
           </div>
         </div>
         <div>
           <h4 class="text-white font-medium mb-3">Navegação</h4>
-          <div class="flex flex-col gap-2 text-muted font-light">
+          <div class="flex flex-col gap-2 text-muted font-normal">
             <a href="#inicio" class="hover:text-white transition-colors">Início</a>
             <a href="#modelos" class="hover:text-white transition-colors">Modelos</a>
-            <a href="#sobre" class="hover:text-white transition-colors">Sobre</a>
+            <a href="#faq" class="hover:text-white transition-colors">Dúvidas</a>
             <a href="#contato" class="hover:text-white transition-colors">Contato</a>
           </div>
         </div>
         <div>
           <h4 class="text-white font-medium mb-3">Endereço</h4>
-          <p class="text-muted font-light leading-relaxed">Av. das Américas, 4541 - Barra da Tijuca, RJ</p>
+          <p class="text-muted font-normal leading-relaxed">Av. das Américas, 4541 - Barra da Tijuca, RJ</p>
         </div>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-muted font-light">
+    <div class="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-muted font-normal">
       <p>© <span id="year"></span> João Moura. Todos os direitos reservados.</p>
-      <p>Consultor Changan na Barra da Tijuca/RJ.</p>
+      <p>Consultor CAOA Changan na Barra da Tijuca/RJ.</p>
+      <p class="inline-flex items-center gap-1.5">Desenvolvido por <a href="https://instagram.com/gabrielmoura.tri" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-muted hover:text-white transition-colors"><iconify-icon icon="mdi:instagram" width="14" height="14"></iconify-icon>@gabrielmoura.tri</a></p>
     </div>
   </footer>
 
   <!-- ===== WHATSAPP FLUTUANTE ===== -->
-  <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20o%20Jo%C3%A3o." target="_blank" rel="noopener" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-3 text-sm font-medium shadow-2xl hover:brightness-110 transition-all">
-    <iconify-icon icon="solar:chat-round-dots-linear" width="18" height="18"></iconify-icon>
+  <a href="https://wa.me/5521990876897?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20o%20Jo%C3%A3o." target="_blank" rel="noopener" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 inline-flex items-center gap-2 rounded-full bg-whatsapp text-white px-4 py-3 text-sm font-medium shadow-2xl hover:bg-whatsapp-dark transition-all">
+    <iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon>
     <span class="hidden sm:inline">WhatsApp</span>
   </a>
 
@@ -638,6 +1052,225 @@ tailwind.config = {
         nav.classList.remove("mobile-open");
       });
     });
+  }
+
+  /* ============ CARROSSEL DE VÍDEOS (post de prova social) ============ */
+  var proofMedia = document.getElementById("proofMedia");
+  if (proofMedia) {
+    var proofVideos = Array.prototype.slice.call(proofMedia.querySelectorAll(".proof-slide"));
+    var proofDots = Array.prototype.slice.call(document.querySelectorAll("#proofDots span"));
+    var proofNext = document.getElementById("proofNext");
+    var proofCurrent = 0;
+
+    var proofGoTo = function (index) {
+      proofVideos[proofCurrent].pause();
+      proofCurrent = (index + proofVideos.length) % proofVideos.length;
+      proofVideos.forEach(function (v, i) {
+        v.style.opacity = i === proofCurrent ? "1" : "0";
+      });
+      proofDots.forEach(function (d, i) {
+        var active = i === proofCurrent;
+        d.classList.toggle("bg-white", active);
+        d.classList.toggle("bg-white/40", !active);
+        d.classList.toggle("w-5", active);
+        d.classList.toggle("w-2", !active);
+      });
+      var activeVideo = proofVideos[proofCurrent];
+      activeVideo.currentTime = 0;
+      activeVideo.play().catch(function () {});
+    };
+
+    proofVideos.forEach(function (v, i) {
+      v.addEventListener("ended", function () { proofGoTo(i + 1); });
+    });
+
+    if (proofNext) {
+      proofNext.addEventListener("click", function () { proofGoTo(proofCurrent + 1); });
+    }
+
+    var proofTouchStartX = null;
+    proofMedia.addEventListener("touchstart", function (e) {
+      proofTouchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    proofMedia.addEventListener("touchend", function (e) {
+      if (proofTouchStartX === null) return;
+      var deltaX = e.changedTouches[0].clientX - proofTouchStartX;
+      if (deltaX < -40) proofGoTo(proofCurrent + 1);
+      else if (deltaX > 40) proofGoTo(proofCurrent - 1);
+      proofTouchStartX = null;
+    }, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      var proofObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            proofVideos[proofCurrent].play().catch(function () {});
+          } else {
+            proofVideos.forEach(function (v) { v.pause(); });
+          }
+        });
+      }, { threshold: 0.4 });
+      proofObserver.observe(proofMedia);
+    } else {
+      proofVideos[0].play().catch(function () {});
+    }
+  }
+
+  /* ============ FRASE DO HERO: sincronizada com o farol do vídeo (desktop) ============ */
+  (function () {
+    var heroVideo = document.getElementById("heroVideo");
+    var phraseText = document.querySelector(".hero-phrase-text");
+    var phraseLine = document.querySelector(".hero-phrase-line");
+    if (!heroVideo || !phraseText || !phraseLine) return;
+
+    function revealHeroVideo() {
+      requestAnimationFrame(function () { heroVideo.classList.add("is-ready"); });
+    }
+    if (heroVideo.readyState >= 2) revealHeroVideo();
+    else heroVideo.addEventListener("loadeddata", revealHeroVideo, { once: true });
+
+    var LIGHT_MOMENT = 0.9; // segundos: instante em que o brilho do farol começa a atingir o pico nessa área da tela
+    var triggered = false;
+
+    function lightUp() {
+      if (triggered) return;
+      triggered = true;
+      phraseText.classList.add("is-lit");
+      phraseLine.classList.add("is-lit");
+      heroVideo.removeEventListener("timeupdate", onTimeUpdate);
+    }
+
+    function onTimeUpdate() {
+      if (window.innerWidth < 768) { lightUp(); return; } // no mobile a animação já é por CSS/tempo; só evita ficar escutando à toa
+      if (heroVideo.currentTime >= LIGHT_MOMENT) lightUp();
+    }
+
+    heroVideo.addEventListener("timeupdate", onTimeUpdate);
+    // fallback: se por algum motivo o vídeo não disparar timeupdate a tempo, garante que a frase apareça
+    setTimeout(lightUp, 3000);
+  })();
+
+  /* ============ VÍDEO DESTAQUE UNI-T: só carrega/reproduz quando visível ============ */
+  var unitVideo = document.getElementById("unitVideo");
+  if (unitVideo) {
+    if ("IntersectionObserver" in window) {
+      var unitVideoObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) unitVideo.play().catch(function () {});
+          else unitVideo.pause();
+        });
+      }, { threshold: 0.3 });
+      unitVideoObserver.observe(unitVideo);
+    } else {
+      unitVideo.play().catch(function () {});
+    }
+  }
+
+  /* ============ FAQ (acordeão) ============ */
+  var faqItems = document.querySelectorAll(".faq-item");
+  faqItems.forEach(function (item) {
+    var btn = item.querySelector(".faq-question");
+    var answer = item.querySelector(".faq-answer");
+    var icon = item.querySelector(".faq-icon");
+    btn.addEventListener("click", function () {
+      var isOpen = item.classList.contains("faq-open");
+      faqItems.forEach(function (other) {
+        other.classList.remove("faq-open");
+        other.querySelector(".faq-answer").style.maxHeight = "";
+        other.querySelector(".faq-icon").style.transform = "";
+      });
+      if (!isOpen) {
+        item.classList.add("faq-open");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        icon.style.transform = "rotate(45deg)";
+      }
+    });
+  });
+
+  /* ============ CONTADOR ANIMADO (destaque Uni-T + estatísticas do Hero) ============ */
+  document.querySelectorAll(".unit-counter, .stat-counter").forEach(function (el) {
+    var target = parseFloat(el.dataset.count);
+    var isDecimal = String(el.dataset.count).indexOf(".") !== -1;
+    var duration = parseInt(el.dataset.duration, 10) || 1500;
+
+    function animateCount() {
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var value = target * eased;
+        el.textContent = isDecimal ? value.toFixed(2) : Math.round(value);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    if ("IntersectionObserver" in window) {
+      var counterObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { animateCount(); counterObserver.unobserve(el); }
+        });
+      }, { threshold: 0.5 });
+      counterObserver.observe(el);
+    } else {
+      animateCount();
+    }
+  });
+
+  /* ============ CARROSSEL DE MODELOS (auto-scroll a cada 3s) ============ */
+  var modelosTrack = document.getElementById("modelosTrack");
+  if (modelosTrack && window.matchMedia("(min-width: 768px)").matches) {
+    var modelosAutoTimer = null;
+    var modelosPaused = false;
+
+    var modelosCardWidth = function () {
+      var firstCard = modelosTrack.children[0];
+      if (!firstCard) return modelosTrack.clientWidth;
+      var gap = parseFloat(window.getComputedStyle(modelosTrack).columnGap) || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    var modelosScrollNext = function () {
+      var maxScroll = modelosTrack.scrollWidth - modelosTrack.clientWidth;
+      if (modelosTrack.scrollLeft >= maxScroll - 10) {
+        modelosTrack.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        modelosTrack.scrollBy({ left: modelosCardWidth(), behavior: "smooth" });
+      }
+    };
+
+    var modelosStartAuto = function () {
+      clearInterval(modelosAutoTimer);
+      modelosAutoTimer = setInterval(function () {
+        if (!modelosPaused) modelosScrollNext();
+      }, 3000);
+    };
+
+    var modelosPause = function () { modelosPaused = true; };
+    var modelosResume = function () { modelosPaused = false; };
+
+    modelosTrack.addEventListener("mouseenter", modelosPause);
+    modelosTrack.addEventListener("mouseleave", modelosResume);
+    modelosTrack.addEventListener("touchstart", modelosPause, { passive: true });
+    modelosTrack.addEventListener("touchend", function () {
+      setTimeout(modelosResume, 2000);
+    }, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      var modelosObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            modelosStartAuto();
+          } else {
+            clearInterval(modelosAutoTimer);
+          }
+        });
+      }, { threshold: 0.3 });
+      modelosObserver.observe(modelosTrack);
+    } else {
+      modelosStartAuto();
+    }
   }
 
   var revealEls = document.querySelectorAll(".reveal");

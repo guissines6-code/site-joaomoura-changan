@@ -1,0 +1,12 @@
+node_modules/
+.tmp-shots/
+
+# Material bruto / pessoal / planejamento — não faz parte do site publicado
+Midia/
+.backup-original-media/
+.agents/
+Planejamento
+TO DO
+JOAO MOURA.png
+CLAUDE (1).md
+skills-lock.json

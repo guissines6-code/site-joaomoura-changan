@@ -1,0 +1,9 @@
+{
+  "name": "run-site-joao-moura-driver",
+  "private": true,
+  "type": "module",
+  "description": "Dependência isolada do driver de teste do skill run-site-joao-moura. Não afeta o site em si (que continua sem build step).",
+  "dependencies": {
+    "playwright-core": "^1.48.0"
+  }
+}

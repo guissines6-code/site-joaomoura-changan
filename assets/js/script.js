@@ -3,10 +3,11 @@
 
   var hasGsap = typeof window.gsap !== "undefined";
   if (hasGsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+  var prefersReducedMotion = typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ============ CONFIG ============ */
-  // TODO: substituir pelo número real do João (formato: código do país + DDD + número, só dígitos)
-  var WHATSAPP_NUMBER = "5521999999999";
+  var WHATSAPP_NUMBER = "5521990876897";
 
   function buildWhatsAppLink(message) {
     var text = encodeURIComponent(message || "Olá! Vim pelo site e quero falar sobre os carros Changan.");
@@ -35,13 +36,11 @@
   });
 
   function playHeroIntro() {
-    var tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    var tl = gsap.timeline({ defaults: { ease: "power2.out" } });
     tl.from(".hero-photo", { opacity: 0, duration: 1, ease: "power2.out" })
       .from(".header", { y: -30, opacity: 0, duration: 0.6 }, "-=1.1")
-      .from(".hero-title", { y: 26, opacity: 0, duration: 0.8 }, "-=0.6")
-      .from(".hero-subtitle", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55")
-      .from(".hero-actions", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55")
-      .from(".hero-stats", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55");
+      .from(".hero .eyebrow", { y: 14, opacity: 0, duration: 0.6 }, "-=0.4")
+      .from(".hero-title", { y: 24, opacity: 0, duration: 0.7 }, "+=0.3");
   }
 
   /* ============ LENIS SMOOTH SCROLL ============ */
@@ -190,9 +189,17 @@
   }
 
   /* ============ SCROLL REVEAL ============ */
-  var revealEls = document.querySelectorAll(".reveal");
-  if (hasGsap && window.ScrollTrigger) {
-    revealEls.forEach(function (el) {
+  var revealEls = document.querySelectorAll(".reveal, .reveal-x, .reveal-scale");
+
+  if (prefersReducedMotion) {
+    // CSS already forces the final state via the prefers-reduced-motion media query;
+    // just make sure nothing is left waiting on a class that never gets added.
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  } else if (hasGsap && window.ScrollTrigger) {
+    // Genérico: tudo que tem .reveal, exceto os títulos de seção, os cards de
+    // modelos e a foto do João, que ganham um tratamento próprio abaixo.
+    var genericReveal = document.querySelectorAll(".reveal:not(.section-head):not(.model-card)");
+    genericReveal.forEach(function (el) {
       var delay = Number(el.dataset.revealDelay || 0) / 1000;
       gsap.fromTo(
         el,
@@ -203,7 +210,69 @@
           duration: 0.9,
           delay: delay,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%" }
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+        }
+      );
+    });
+
+    // Títulos de seção: fade-in + subida de 30px.
+    document.querySelectorAll(".section-head").forEach(function (el) {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+        }
+      );
+    });
+
+    // Cards de modelos: entrada escalonada.
+    var modelCards = document.querySelectorAll(".model-card");
+    if (modelCards.length) {
+      gsap.fromTo(
+        modelCards,
+        { opacity: 0, y: 36 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          stagger: 0.15,
+          scrollTrigger: { trigger: ".models-grid", start: "top 85%", toggleActions: "play none none none" }
+        }
+      );
+    }
+
+    // Foto do João: fade-in lateral.
+    document.querySelectorAll(".reveal-x").forEach(function (el) {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: -28 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+        }
+      );
+    });
+
+    // CTA final: título entra com scale + fade.
+    document.querySelectorAll(".reveal-scale").forEach(function (el) {
+      gsap.fromTo(
+        el,
+        { opacity: 0, scale: 0.95 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
         }
       );
     });
@@ -229,19 +298,24 @@
     var target = parseFloat(el.dataset.count);
     var isDecimal = String(el.dataset.count).indexOf(".") !== -1;
 
+    if (prefersReducedMotion) {
+      el.textContent = isDecimal ? target.toFixed(1) : Math.round(target);
+      return;
+    }
+
     function animateCount() {
       if (hasGsap) {
         var obj = { val: 0 };
         gsap.to(obj, {
           val: target,
-          duration: 1.6,
+          duration: 1.5,
           ease: "power3.out",
           onUpdate: function () {
             el.textContent = isDecimal ? obj.val.toFixed(1) : Math.round(obj.val);
           }
         });
       } else {
-        var duration = 1400, start = null;
+        var duration = 1500, start = null;
         function step(ts) {
           if (!start) start = ts;
           var progress = Math.min((ts - start) / duration, 1);
@@ -280,23 +354,177 @@
         if (openItem !== item) {
           openItem.classList.remove("open");
           var openAnswer = openItem.querySelector(".faq-answer");
-          if (hasGsap) gsap.to(openAnswer, { height: 0, duration: 0.35, ease: "power2.inOut" });
-          else openAnswer.style.height = "0px";
+          if (hasGsap) gsap.to(openAnswer, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut" });
+          else { openAnswer.style.height = "0px"; openAnswer.style.opacity = "0"; }
         }
       });
 
       if (isOpen) {
         item.classList.remove("open");
-        if (hasGsap) gsap.to(answer, { height: 0, duration: 0.35, ease: "power2.inOut" });
-        else answer.style.height = "0px";
+        if (hasGsap) gsap.to(answer, { height: 0, opacity: 0, duration: 0.3, ease: "power2.inOut" });
+        else { answer.style.height = "0px"; answer.style.opacity = "0"; }
       } else {
         item.classList.add("open");
         var target = answer.scrollHeight;
-        if (hasGsap) gsap.fromTo(answer, { height: 0 }, { height: target, duration: 0.4, ease: "power2.inOut" });
-        else answer.style.height = target + "px";
+        if (hasGsap) gsap.fromTo(answer, { height: 0, opacity: 0 }, { height: target, opacity: 1, duration: 0.3, ease: "power2.inOut" });
+        else { answer.style.height = target + "px"; answer.style.opacity = "1"; }
       }
     });
   });
+
+  /* ============ OCULTAR WHATSAPP FLUTUANTE NA CTA FINAL ============ */
+  var ctaFinalSection = document.querySelector(".cta-final");
+  var whatsappFloatBtn = document.querySelector(".whatsapp-float");
+  if (ctaFinalSection && whatsappFloatBtn && "IntersectionObserver" in window) {
+    var ctaObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          whatsappFloatBtn.classList.toggle("is-hidden", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    ctaObserver.observe(ctaFinalSection);
+  }
+
+  /* ============ COMO CHEGAR (DROPDOWN) ============ */
+  var dirToggle = document.getElementById("dirToggle");
+  var dirMenu = document.getElementById("dirMenu");
+  if (dirToggle && dirMenu) {
+    dirToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var isOpen = dirMenu.classList.toggle("open");
+      dirToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (!dirMenu.classList.contains("open")) return;
+      if (dirMenu.contains(e.target) || dirToggle.contains(e.target)) return;
+      dirMenu.classList.remove("open");
+      dirToggle.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  /* ============ LAZY LOAD DE VÍDEOS ABAIXO DA DOBRA ============ */
+  // Uso: <video class="js-lazy-video" preload="none" autoplay muted loop playsinline>
+  //        <source data-src="assets/video/arquivo.mp4" type="video/mp4">
+  //      </video>
+  // O <source> só recebe o src (e o vídeo só baixa) quando chega perto da viewport.
+  var lazyVideos = document.querySelectorAll(".js-lazy-video");
+  if (lazyVideos.length) {
+    if ("IntersectionObserver" in window) {
+      var lazyVideoObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var video = entry.target;
+            video.querySelectorAll("source[data-src]").forEach(function (source) {
+              source.src = source.dataset.src;
+              source.removeAttribute("data-src");
+            });
+            video.load();
+            lazyVideoObserver.unobserve(video);
+          });
+        },
+        { rootMargin: "200px 0px" }
+      );
+      lazyVideos.forEach(function (video) { lazyVideoObserver.observe(video); });
+    } else {
+      // Sem suporte a IntersectionObserver: carrega direto, sem lazy.
+      lazyVideos.forEach(function (video) {
+        video.querySelectorAll("source[data-src]").forEach(function (source) {
+          source.src = source.dataset.src;
+        });
+        video.load();
+      });
+    }
+  }
+
+  /* ============ CARROSSEL DE PROVA SOCIAL (vídeo + fotos) ============ */
+  var proofTrack = document.getElementById("proofTrack");
+  var proofPrevBtn = document.getElementById("proofPrev");
+  var proofNextBtn = document.getElementById("proofNext");
+  var proofDotsWrap = document.getElementById("proofDots");
+  var proofVideo = document.getElementById("proofVideo");
+  var proofPlayBtn = document.getElementById("proofPlayBtn");
+  var proofSlides = proofTrack ? Array.from(proofTrack.children) : [];
+  var PROOF_VIDEO_INDEX = 0;
+
+  if (proofTrack && proofSlides.length) {
+    proofSlides.forEach(function (_, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "proof-dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", "Ir para o slide " + (i + 1));
+      dot.addEventListener("click", function () { scrollToProofSlide(i); });
+      proofDotsWrap.appendChild(dot);
+    });
+
+    var proofDots = Array.from(proofDotsWrap.children);
+    var proofVisible = true;
+    var proofUserPaused = false;
+
+    function proofStep() {
+      return proofSlides[0].getBoundingClientRect().width;
+    }
+
+    function proofCurrentIndex() {
+      return Math.round(proofTrack.scrollLeft / proofStep());
+    }
+
+    function scrollToProofSlide(i) {
+      var looped = (i + proofSlides.length) % proofSlides.length;
+      proofTrack.scrollTo({ left: looped * proofStep(), behavior: "smooth" });
+    }
+
+    function updateProofState() {
+      var idx = proofCurrentIndex();
+      proofDots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
+
+      if (!proofVideo) return;
+      var isVideoSlideActive = idx === PROOF_VIDEO_INDEX;
+      if (isVideoSlideActive && proofVisible && !proofUserPaused) {
+        proofVideo.play().catch(function () {});
+        if (proofPlayBtn) proofPlayBtn.classList.remove("is-paused");
+      } else {
+        proofVideo.pause();
+      }
+    }
+
+    proofPrevBtn.addEventListener("click", function () { scrollToProofSlide(proofCurrentIndex() - 1); });
+    proofNextBtn.addEventListener("click", function () { scrollToProofSlide(proofCurrentIndex() + 1); });
+    proofTrack.addEventListener("scroll", debounce(updateProofState, 100), { passive: true });
+
+    if (proofPlayBtn && proofVideo) {
+      proofPlayBtn.addEventListener("click", function () {
+        if (proofVideo.paused) {
+          proofUserPaused = false;
+          proofVideo.play().catch(function () {});
+          proofPlayBtn.classList.remove("is-paused");
+          proofPlayBtn.setAttribute("aria-label", "Pausar vídeo");
+        } else {
+          proofUserPaused = true;
+          proofVideo.pause();
+          proofPlayBtn.classList.add("is-paused");
+          proofPlayBtn.setAttribute("aria-label", "Reproduzir vídeo");
+        }
+      });
+    }
+
+    // Pausa o vídeo quando o carrossel sai da viewport (economia de recursos)
+    // e retoma se voltar pro slide do vídeo com a seção visível.
+    var proofBand = document.querySelector(".proof-carousel-band");
+    if (proofBand && "IntersectionObserver" in window) {
+      var proofBandObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          proofVisible = entry.isIntersecting;
+          updateProofState();
+        });
+      }, { threshold: 0.25 });
+      proofBandObserver.observe(proofBand);
+    }
+
+    updateProofState();
+  }
 
   /* ============ TESTIMONIAL CAROUSEL ============ */
   var track = document.getElementById("testiTrack");
