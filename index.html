@@ -53,6 +53,11 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
 
+<!-- Preload da imagem da Hero (maior elemento visível no 1º carregamento —
+     é o candidato a LCP): sem isso, o navegador só descobre essa imagem
+     depois de baixar o CSS, atrasando o LCP. -->
+<link rel="preload" as="image" href="assets/img/cs75-video-poster.jpg" fetchpriority="high">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Fonte carregada de forma assíncrona (não bloqueia a primeira renderização) -->
@@ -388,7 +393,7 @@
 
         <!-- Mídia: bloco grande e visível no mobile (vídeo vertical, impacto máximo); vira fundo full-bleed no desktop -->
         <div class="relative h-[78vh] sm:h-[82vh] md:absolute md:inset-0 md:h-full">
-          <img src="assets/img/cs75-video-poster.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]">
+          <img src="assets/img/cs75-video-poster.jpg" alt="" aria-hidden="true" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]">
           <video id="heroVideo" class="absolute inset-0 w-full h-full object-cover object-[50%_10%] md:object-[50%_45%]" autoplay muted loop playsinline preload="metadata" poster="assets/img/cs75-video-poster.jpg" disablePictureInPicture disableRemotePlayback x-webkit-airplay="deny">
             <source src="assets/video/video-detalhe-luz.mp4" type="video/mp4">
           </video>
