@@ -1119,6 +1119,62 @@
     </div>
   </section>
 
+  <!-- ===== DEIXE SEU CONTATO (alternativa ao WhatsApp) =====
+       Posição escolhida de propósito: depois de Contato (WhatsApp/Instagram/
+       mapa) e antes do Footer — é o ponto de maior intenção da página (quem
+       chegou até aqui já viu modelos, diferenciais, depoimentos e FAQ).
+       Complementa os CTAs de WhatsApp sem competir com eles: existe visitante
+       que não quer abrir conversa agora, mas topa deixar contato pro João
+       retornar depois — hoje esse visitante simplesmente sai sem deixar
+       rastro nenhum. -->
+  <section id="deixe-seu-contato" class="py-14 md:py-20 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto">
+    <div class="rounded-[1.5rem] md:rounded-[2rem] border border-white/10 bg-card p-6 sm:p-8 md:p-10 relative overflow-hidden reveal">
+      <div class="max-w-xl mx-auto text-center">
+        <div class="flex items-center justify-center space-x-3 mb-4">
+          <div class="w-5 h-1 rounded-full bg-accent"></div>
+          <span class="text-accent uppercase text-xs tracking-wider font-normal">Prefere não usar o WhatsApp agora?</span>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-3">Deixe seu contato e o João te retorna</h2>
+        <p class="text-white/70 text-sm font-normal leading-relaxed mb-8 max-w-md mx-auto">Sem compromisso. É só deixar seus dados aqui que o João entra em contato pra te ajudar.</p>
+
+        <form id="form-contato" class="flex flex-col gap-4 text-left" novalidate>
+          <div>
+            <label for="form-nome" class="block text-xs uppercase tracking-wider text-white/60 mb-1.5">Nome completo <span class="text-accent">*</span></label>
+            <input type="text" id="form-nome" name="nome" autocomplete="name" required
+              class="w-full h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent transition-colors"
+              placeholder="Seu nome completo">
+            <p data-erro-de="form-nome" class="hidden text-xs text-red-400 mt-1.5 px-1"></p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="form-telefone" class="block text-xs uppercase tracking-wider text-white/60 mb-1.5">Telefone <span class="text-accent">*</span></label>
+              <input type="tel" id="form-telefone" name="telefone" autocomplete="tel" inputmode="tel" required
+                class="w-full h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent transition-colors"
+                placeholder="(21) 99999-9999">
+              <p data-erro-de="form-telefone" class="hidden text-xs text-red-400 mt-1.5 px-1"></p>
+            </div>
+            <div>
+              <label for="form-email" class="block text-xs uppercase tracking-wider text-white/60 mb-1.5">E-mail <span class="text-accent">*</span></label>
+              <input type="email" id="form-email" name="email" autocomplete="email" inputmode="email" required
+                class="w-full h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-accent transition-colors"
+                placeholder="seu@email.com">
+              <p data-erro-de="form-email" class="hidden text-xs text-red-400 mt-1.5 px-1"></p>
+            </div>
+          </div>
+
+          <button type="submit" id="form-contato-btn"
+            class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-3.5 text-sm font-medium hover:opacity-90 transition-all disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto sm:self-center sm:min-w-[15rem]">
+            <iconify-icon icon="solar:phone-calling-linear" width="18" height="18"></iconify-icon>
+            <span>Quero que me liguem</span>
+          </button>
+
+          <p id="form-contato-status" class="hidden text-sm text-center mt-1" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="py-8 px-4 sm:px-6 md:px-12 max-w-[1440px] mx-auto border-t border-border">
     <div class="flex flex-col lg:flex-row justify-between gap-8">
@@ -1456,6 +1512,105 @@
     revealEls.forEach(function (el) { observer.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  // ===== Formulário "Deixe seu contato" =====
+  // Validação no blur (não a cada tecla), erro fica embaixo do campo certo,
+  // e no submit com erro o foco vai pro primeiro campo inválido — segue as
+  // diretrizes de formulário do skill ui-ux-pro-max (inline-validation,
+  // error-placement, focus-management).
+  var formContato = document.getElementById("form-contato");
+  if (formContato) {
+    var campoNome = document.getElementById("form-nome");
+    var campoTelefone = document.getElementById("form-telefone");
+    var campoEmail = document.getElementById("form-email");
+    var botaoEnviar = document.getElementById("form-contato-btn");
+    var statusEl = document.getElementById("form-contato-status");
+
+    function erroDoCampo(campo) {
+      return formContato.querySelector('[data-erro-de="' + campo.id + '"]');
+    }
+
+    function validarCampo(campo) {
+      var valor = campo.value.trim();
+      var mensagem = "";
+
+      if (!valor) {
+        mensagem = "Esse campo é obrigatório.";
+      } else if (campo === campoTelefone) {
+        var digitos = valor.replace(/\D/g, "");
+        if (digitos.length < 10) mensagem = "Telefone incompleto — inclui o DDD.";
+      } else if (campo === campoEmail) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) mensagem = "Digita um e-mail válido (ex.: nome@email.com).";
+      }
+
+      var elErro = erroDoCampo(campo);
+      if (mensagem) {
+        campo.setAttribute("aria-invalid", "true");
+        if (elErro) { elErro.textContent = mensagem; elErro.classList.remove("hidden"); }
+        campo.classList.add("border-red-400/70");
+      } else {
+        campo.removeAttribute("aria-invalid");
+        if (elErro) { elErro.textContent = ""; elErro.classList.add("hidden"); }
+        campo.classList.remove("border-red-400/70");
+      }
+      return !mensagem;
+    }
+
+    [campoNome, campoTelefone, campoEmail].forEach(function (campo) {
+      campo.addEventListener("blur", function () { validarCampo(campo); });
+    });
+
+    formContato.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var campos = [campoNome, campoTelefone, campoEmail];
+      var valido = true;
+      var primeiroInvalido = null;
+      campos.forEach(function (campo) {
+        var ok = validarCampo(campo);
+        if (!ok) {
+          valido = false;
+          if (!primeiroInvalido) primeiroInvalido = campo;
+        }
+      });
+
+      if (!valido) {
+        primeiroInvalido.focus();
+        return;
+      }
+
+      botaoEnviar.disabled = true;
+      var textoOriginal = botaoEnviar.innerHTML;
+      botaoEnviar.innerHTML = '<iconify-icon icon="svg-spinners:270-ring" width="18" height="18"></iconify-icon><span>Enviando...</span>';
+      statusEl.classList.add("hidden");
+
+      fetch("/api/registrar-contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: campoNome.value.trim(),
+          telefone: campoTelefone.value.trim(),
+          email: campoEmail.value.trim(),
+          origem: "Site João",
+        }),
+      })
+        .then(function (resposta) { if (!resposta.ok) throw new Error("Falha ao enviar"); return resposta.json(); })
+        .then(function () {
+          formContato.reset();
+          statusEl.textContent = "Recebido! O João vai entrar em contato em breve.";
+          statusEl.className = "text-sm text-center mt-1 text-accent";
+        })
+        .catch(function () {
+          statusEl.textContent = "Não conseguimos enviar agora. Chama no WhatsApp que a gente te ajuda na hora.";
+          statusEl.className = "text-sm text-center mt-1 text-red-400";
+        })
+        .finally(function () {
+          botaoEnviar.disabled = false;
+          botaoEnviar.innerHTML = textoOriginal;
+          statusEl.classList.remove("hidden");
+        });
+    });
   }
 })();
 </script>

@@ -19,6 +19,9 @@
     "url": "https://github.com/guissines6-code/site-joaomoura-changan/issues"
   },
   "homepage": "https://github.com/guissines6-code/site-joaomoura-changan#readme",
+  "dependencies": {
+    "redis": "^4.7.1"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.19"
   }
