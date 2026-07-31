@@ -1,6 +1,10 @@
 node_modules/
 .tmp-shots/
 
+# estado local do comando /devhub-start (horário de início de sessão) —
+# efêmero, nunca faz sentido versionar.
+.devhub/sessao.local.json
+
 # Material bruto / pessoal / planejamento — não faz parte do site publicado
 Midia/
 .backup-original-media/
